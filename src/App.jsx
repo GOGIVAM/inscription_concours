@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import {
   Calendar, Users, Trophy, Rocket, Bot, Leaf, GraduationCap,
   Handshake, BookOpen, ChevronRight, MapPin, Mail, ExternalLink,
-  ArrowRight, Cpu, Globe, Zap, ChevronLeft, CheckCircle2, Menu, Phone
+  ArrowRight, Cpu, Globe, Zap, ChevronLeft, CheckCircle2, Menu, X, Phone
 } from 'lucide-react'
 import './index.css'
 
@@ -35,7 +35,9 @@ function SocialIcon({ name, size = 16 }) {
   }
   return paths[name] ?? null
 }
- 
+
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyUcGXqQ2gbEfQmkA5Uyt9SqmRIcjoO5TV-BaHIJbsAQwWsbzS7CiEgor3ex_C7NUVk/exec'
+
 // ─── DATA ────────────────────────────────────────────────────────────────────
 
 const STATS = [
@@ -154,10 +156,6 @@ const INIT = {
   programmingLevel: 0, stack: [], projects: '',
   prototypeIdea: '', roles: [],
 }
-
-const [sending, setSending]   = useState(false)
-const [error,   setError]     = useState(null)
- 
 
 // ─── HOOKS ───────────────────────────────────────────────────────────────────
 
@@ -671,13 +669,46 @@ function RegisterSection() {
   const [step, setStep] = useState(1)
   const [form, setForm] = useState(INIT)
   const [submitted, setSubmitted] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [error, setError] = useState(null)
   const TOTAL = 4
+
   const set = (k, v) => setForm(f => ({ ...f, [k]: v }))
   const toggleArr = (k, v) => setForm(f => ({
     ...f, [k]: f[k].includes(v) ? f[k].filter(x => x !== v) : [...f[k], v]
   }))
   const progress = ((step - 1) / (TOTAL - 1)) * 100
   const [ref, visible] = useReveal()
+
+  const handleSubmit = async () => {
+    setSending(true)
+    setError(null)
+    try {
+      await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        body: JSON.stringify({
+          fullName:         form.fullName,
+          email:            form.email,
+          level:            form.level,
+          major:            form.major,
+          university:       form.university,
+          domains:          form.domains.join(', '),
+          otherDomain:      form.otherDomain,
+          teamStatus:       form.teamStatus,
+          programmingLevel: form.programmingLevel,
+          stack:            form.stack.join(', '),
+          projects:         form.projects,
+          prototypeIdea:    form.prototypeIdea,
+          roles:            form.roles.join(', '),
+        }),
+      })
+      setSubmitted(true)
+    } catch {
+      setError('Erreur réseau. Vérifie ta connexion et réessaie.')
+    } finally {
+      setSending(false)
+    }
+  }
 
   return (
     <section className={`register-section fade-up ${visible ? 'visible' : ''}`} id="register" ref={ref}>
@@ -729,13 +760,21 @@ function RegisterSection() {
                 {step === 4 && <Step4 form={form} set={set} toggleArr={toggleArr} />}
               </div>
 
+              {error && <p className="form-error">{error}</p>}
+
               <div className="form-footer-nav">
                 {step > 1
                   ? <button className="btn-back-form" onClick={() => setStep(s => s - 1)}>← Back</button>
                   : <span />
                 }
-                <button className="btn-primary" onClick={() => step < TOTAL ? setStep(s => s + 1) : setSubmitted(true)}>
-                  {step === TOTAL ? 'Submit Application' : 'Continue →'}
+                <button
+                  className="btn-primary"
+                  disabled={sending}
+                  onClick={() => step < TOTAL ? setStep(s => s + 1) : handleSubmit()}
+                >
+                  {step === TOTAL
+                    ? (sending ? 'Envoi en cours…' : 'Submit Application')
+                    : 'Continue →'}
                 </button>
               </div>
             </>
