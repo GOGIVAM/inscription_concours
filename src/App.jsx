@@ -6,6 +6,8 @@ import {
 } from 'lucide-react'
 import './index.css'
 
+// ─── SOCIAL ICONS (SVG inline, pas de dépendance) ────────────────────────────
+
 function SocialIcon({ name, size = 16 }) {
   const paths = {
     twitter: (
@@ -36,24 +38,26 @@ function SocialIcon({ name, size = 16 }) {
   return paths[name] ?? null
 }
 
+// ─── CONFIG ───────────────────────────────────────────────────────────────────
+// Remplace par l'URL de ton déploiement Apps Script
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyUcGXqQ2gbEfQmkA5Uyt9SqmRIcjoO5TV-BaHIJbsAQwWsbzS7CiEgor3ex_C7NUVk/exec'
 
-// ─── DATA ────────────────────────────────────────────────────────────────────
+// ─── DATA ─────────────────────────────────────────────────────────────────────
 
 const STATS = [
-  { num: '5', label: 'Days of Immersion' },
+  { num: '5',   label: 'Days of Immersion' },
   { num: '40+', label: 'Young Participants' },
-  { num: '10', label: 'Innovation Teams' },
-  { num: '3', label: 'Impact Domains' },
+  { num: '10',  label: 'Innovation Teams' },
+  { num: '3',   label: 'Impact Domains' },
 ]
 
 const FEATURES = [
-  { icon: Bot, label: 'AI & Data Literacy Workshops' },
-  { icon: Trophy, label: 'Social Good Challenge (Hackathon)' },
-  { icon: Leaf, label: 'Agriculture & Health AI' },
-  { icon: GraduationCap, label: 'Mentorship & Coaching' },
-  { icon: Rocket, label: 'Open-Source Digital Toolkit' },
-  { icon: Handshake, label: 'Reciprocal US–Cameroon Exchange' },
+  { icon: Bot,          label: 'AI & Data Literacy Workshops' },
+  { icon: Trophy,       label: 'Social Good Challenge (Hackathon)' },
+  { icon: Leaf,         label: 'Agriculture & Health AI' },
+  { icon: GraduationCap,label: 'Mentorship & Coaching' },
+  { icon: Rocket,       label: 'Open-Source Digital Toolkit' },
+  { icon: Handshake,    label: 'Reciprocal US–Cameroon Exchange' },
 ]
 
 const TESTIMONIALS = [
@@ -133,23 +137,29 @@ const EVENTS = [
 ]
 
 const PARTNERS = [
-  { name: 'ENSPD Douala', abbr: 'ENSPD', url: 'https://www.enspd.univ-douala.com', logo: '/polytech_douala.png' },
-  { name: 'University of Douala', abbr: 'UNIV-DLA', url: 'https://www.univ-douala.com', logo: '/universite_de_douala.png' },
-  { name: 'U.S. Embassy Cameroon', abbr: 'US EMB', url: 'https://cm.usembassy.gov', logo: '/us_embassy_logo.png' },
-  { name: 'Georgia State University', abbr: 'GSU', url: 'https://www.gsu.edu', logo: '/georgia_state_university.png' },
-  { name: 'Georgia Tech', abbr: 'GT', url: 'https://www.gatech.edu', logo: '/georgia_tech.png' },
+  { name: 'ENSPD Douala',           abbr: 'ENSPD',   url: 'https://www.enspd.univ-douala.com', logo: '/polytech_douala.png' },
+  { name: 'University of Douala',   abbr: 'UNIV-DLA', url: 'https://www.univ-douala.com',       logo: '/universite_de_douala.png' },
+  { name: 'U.S. Embassy Cameroon',  abbr: 'US EMB',   url: 'https://cm.usembassy.gov',          logo: '/us_embassy_logo.png' },
+  { name: 'Georgia State University',abbr: 'GSU',     url: 'https://www.gsu.edu',               logo: '/georgia_state_university.png' },
+  { name: 'Georgia Tech',           abbr: 'GT',       url: 'https://www.gatech.edu',            logo: '/georgia_tech.png' },
 ]
 
 const DOMAIN_OPTIONS = [
-  'Cameroonian Agriculture', 'Rural Health', 'Bilingual Education',
-  'Local Cybersecurity (low-resource)', 'Other (describe below)',
+  'Cameroonian Agriculture',
+  'Rural Health',
+  'Bilingual Education',
+  'Local Cybersecurity (low-resource)',
+  'Other (describe below)',
 ]
 const STACK_OPTIONS = [
-  'Python / PyTorch', 'C / Embedded', 'Git / GitHub',
-  'Streamlit / Flask (demos)', 'Federated Learning Edge',
+  'Python / PyTorch',
+  'C / Embedded',
+  'Git / GitHub',
+  'Streamlit / Flask (demos)',
+  'Federated Learning Edge',
 ]
 const ROLE_OPTIONS = ['ML Coder', 'Prototype Developer', 'Cameroon Field Tester', 'MVP Delivery PM']
-const STEP_LABELS = ['Basic Info', 'AI Project', 'Skills', 'Commitment']
+const STEP_LABELS  = ['Basic Info', 'AI Project', 'Skills', 'Commitment']
 const INIT = {
   fullName: '', email: '', level: '', major: '', university: '',
   domains: [], otherDomain: '', teamStatus: '',
@@ -157,7 +167,7 @@ const INIT = {
   prototypeIdea: '', roles: [],
 }
 
-// ─── HOOKS ───────────────────────────────────────────────────────────────────
+// ─── HOOKS ────────────────────────────────────────────────────────────────────
 
 function useReveal(threshold = 0.1) {
   const ref = useRef(null)
@@ -174,7 +184,7 @@ function useReveal(threshold = 0.1) {
   return [ref, visible]
 }
 
-// ─── TOP BAR ─────────────────────────────────────────────────────────────────
+// ─── TOP BAR ──────────────────────────────────────────────────────────────────
 
 function TopBar() {
   return (
@@ -192,21 +202,39 @@ function TopBar() {
   )
 }
 
-// ─── HEADER ──────────────────────────────────────────────────────────────────
+// ─── HEADER ───────────────────────────────────────────────────────────────────
 
 function Header() {
-  const [scrolled, setScrolled] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [scrolled, setScrolled]   = useState(false)
+  const [menuOpen, setMenuOpen]   = useState(false)
+
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 30)
     window.addEventListener('scroll', fn)
     return () => window.removeEventListener('scroll', fn)
   }, [])
+
   return (
     <header className={`site-header ${scrolled ? 'scrolled' : ''}`}>
       <div className="header-inner">
+
+        {/* LOGO — image logolgsdia.png + texte */}
         <a href="#home" className="site-logo">
-          <div className="logo-icon"><Bot size={18} color="#fff" strokeWidth={2.2} /></div>
+          <div className="logo-icon">
+            <img
+              src="/logolgsdia.png"
+              alt="AI for Social Good logo"
+              className="logo-img"
+              onError={e => {
+                e.target.style.display = 'none'
+                e.target.nextSibling.style.display = 'flex'
+              }}
+            />
+            {/* Fallback si logo.png absent */}
+            <span className="logo-icon-fallback" style={{ display: 'none' }}>
+              <Bot size={20} color="#fff" strokeWidth={2.2} />
+            </span>
+          </div>
           <div className="logo-text">
             <strong>AI for Social Good</strong>
             <span>Youth Exchange · Cameroon 2026</span>
@@ -239,7 +267,7 @@ function Header() {
   )
 }
 
-// ─── HERO ────────────────────────────────────────────────────────────────────
+// ─── HERO ─────────────────────────────────────────────────────────────────────
 
 function Hero() {
   return (
@@ -315,7 +343,7 @@ function PartnersBar() {
   )
 }
 
-// ─── STATS ───────────────────────────────────────────────────────────────────
+// ─── STATS ────────────────────────────────────────────────────────────────────
 
 function StatsSection() {
   const [ref, visible] = useReveal()
@@ -343,7 +371,7 @@ function StatsSection() {
   )
 }
 
-// ─── ABOUT ───────────────────────────────────────────────────────────────────
+// ─── ABOUT ────────────────────────────────────────────────────────────────────
 
 function AboutSection() {
   const [ref, visible] = useReveal()
@@ -384,7 +412,7 @@ function AboutSection() {
   )
 }
 
-// ─── FEATURES STRIP ──────────────────────────────────────────────────────────
+// ─── FEATURES STRIP ───────────────────────────────────────────────────────────
 
 function FeaturesStrip() {
   const [ref, visible] = useReveal()
@@ -406,16 +434,19 @@ function FeaturesStrip() {
   )
 }
 
-// ─── TESTIMONIALS ─────────────────────────────────────────────────────────────
+// ─── TESTIMONIALS ──────────────────────────────────────────────────────────────
 
 function Testimonials() {
   const [active, setActive] = useState(0)
-  const [ref, visible] = useReveal()
+  const [ref, visible]      = useReveal()
+
   useEffect(() => {
     const t = setInterval(() => setActive(a => (a + 1) % TESTIMONIALS.length), 6000)
     return () => clearInterval(t)
   }, [])
+
   const t = TESTIMONIALS[active]
+
   return (
     <section className={`testimonials-section fade-up ${visible ? 'visible' : ''}`} ref={ref}>
       <div className="testimonials-inner">
@@ -424,11 +455,7 @@ function Testimonials() {
           <h2>Backed by Leading<br />Institutions</h2>
           <div className="testimonial-dots">
             {TESTIMONIALS.map((_, i) => (
-              <button
-                key={i}
-                className={`tdot ${i === active ? 'active' : ''}`}
-                onClick={() => setActive(i)}
-              />
+              <button key={i} className={`tdot ${i === active ? 'active' : ''}`} onClick={() => setActive(i)} />
             ))}
           </div>
           <div className="testimonial-arrows">
@@ -459,7 +486,7 @@ function Testimonials() {
   )
 }
 
-// ─── DOMAINS ──────────────────────────────────────────────────────────────────
+// ─── DOMAINS ───────────────────────────────────────────────────────────────────
 
 function DomainsSection() {
   const [ref, visible] = useReveal()
@@ -489,7 +516,7 @@ function DomainsSection() {
   )
 }
 
-// ─── EVENTS ───────────────────────────────────────────────────────────────────
+// ─── EVENTS ────────────────────────────────────────────────────────────────────
 
 function EventsSection() {
   const [ref, visible] = useReveal()
@@ -530,7 +557,7 @@ function EventsSection() {
   )
 }
 
-// ─── FORM STEPS ───────────────────────────────────────────────────────────────
+// ─── FORM STEPS ────────────────────────────────────────────────────────────────
 
 function Step1({ form, set }) {
   return (
@@ -552,7 +579,9 @@ function Step1({ form, set }) {
           <label>Level of Study *</label>
           <select value={form.level} onChange={e => set('level', e.target.value)}>
             <option value="">Select…</option>
-            <option>L3</option><option>M1/M2</option><option>PhD</option>
+            <option>L3</option>
+            <option>M1/M2</option>
+            <option>PhD</option>
           </select>
         </div>
         <div className="form-group">
@@ -615,7 +644,14 @@ function Step3({ form, set, toggleArr }) {
         <div className="scale-row">
           <span className="scale-label">Beginner</span>
           {[1, 2, 3, 4, 5].map(n => (
-            <button key={n} type="button" className={`scale-btn ${form.programmingLevel === n ? 'active' : ''}`} onClick={() => set('programmingLevel', n)}>{n}</button>
+            <button
+              key={n}
+              type="button"
+              className={`scale-btn ${form.programmingLevel === n ? 'active' : ''}`}
+              onClick={() => set('programmingLevel', n)}
+            >
+              {n}
+            </button>
           ))}
           <span className="scale-label">Expert</span>
         </div>
@@ -633,7 +669,12 @@ function Step3({ form, set, toggleArr }) {
       </div>
       <div className="form-group">
         <label>Existing Projects (GitHub links welcome)</label>
-        <textarea rows={4} placeholder="e.g. github.com/myprofile/agro-detect – banana disease detection (TFLite, 84% accuracy)" value={form.projects} onChange={e => set('projects', e.target.value)} />
+        <textarea
+          rows={4}
+          placeholder="e.g. github.com/myprofile/agro-detect – banana disease detection (TFLite, 84% accuracy)"
+          value={form.projects}
+          onChange={e => set('projects', e.target.value)}
+        />
       </div>
     </>
   )
@@ -646,7 +687,12 @@ function Step4({ form, set, toggleArr }) {
       <p className="step-sub">Describe your prototype idea and desired role.</p>
       <div className="form-group">
         <label>Prototype Idea + Cameroonian Impact</label>
-        <textarea rows={5} placeholder={`e.g. "Banana disease app, tested in Douala — detects Fusarium wilt via smartphone photo without internet."`} value={form.prototypeIdea} onChange={e => set('prototypeIdea', e.target.value)} />
+        <textarea
+          rows={5}
+          placeholder={`e.g. "Banana disease app, tested in Douala — detects Fusarium wilt via smartphone photo without internet."`}
+          value={form.prototypeIdea}
+          onChange={e => set('prototypeIdea', e.target.value)}
+        />
       </div>
       <div className="form-group">
         <label>Desired Roles in the Team</label>
@@ -663,20 +709,22 @@ function Step4({ form, set, toggleArr }) {
   )
 }
 
-// ─── REGISTER SECTION ─────────────────────────────────────────────────────────
+// ─── REGISTER SECTION ──────────────────────────────────────────────────────────
 
 function RegisterSection() {
-  const [step, setStep] = useState(1)
-  const [form, setForm] = useState(INIT)
+  const [step, setStep]         = useState(1)
+  const [form, setForm]         = useState(INIT)
   const [submitted, setSubmitted] = useState(false)
-  const [sending, setSending] = useState(false)
-  const [error, setError] = useState(null)
+  const [sending, setSending]   = useState(false)
+  const [error, setError]       = useState(null)
   const TOTAL = 4
 
   const set = (k, v) => setForm(f => ({ ...f, [k]: v }))
   const toggleArr = (k, v) => setForm(f => ({
-    ...f, [k]: f[k].includes(v) ? f[k].filter(x => x !== v) : [...f[k], v]
+    ...f,
+    [k]: f[k].includes(v) ? f[k].filter(x => x !== v) : [...f[k], v],
   }))
+
   const progress = ((step - 1) / (TOTAL - 1)) * 100
   const [ref, visible] = useReveal()
 
@@ -684,8 +732,11 @@ function RegisterSection() {
     setSending(true)
     setError(null)
     try {
+      // mode: 'no-cors' est obligatoire pour Apps Script — on ne peut pas lire la réponse
       await fetch(APPS_SCRIPT_URL, {
         method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
         body: JSON.stringify({
           fullName:         form.fullName,
           email:            form.email,
@@ -702,9 +753,10 @@ function RegisterSection() {
           roles:            form.roles.join(', '),
         }),
       })
+      // Avec no-cors on suppose succès si pas d'exception réseau
       setSubmitted(true)
     } catch {
-      setError('Erreur réseau. Vérifie ta connexion et réessaie.')
+      setError('Network error. Check your connection and try again.')
     } finally {
       setSending(false)
     }
@@ -713,6 +765,8 @@ function RegisterSection() {
   return (
     <section className={`register-section fade-up ${visible ? 'visible' : ''}`} id="register" ref={ref}>
       <div className="register-inner">
+
+        {/* Colonne gauche — infos */}
         <div className="register-left">
           <p className="section-label">2026 Application</p>
           <h2>Join the Exchange</h2>
@@ -736,9 +790,11 @@ function RegisterSection() {
           </div>
         </div>
 
+        {/* Colonne droite — formulaire */}
         <div className="register-right">
           {!submitted ? (
             <>
+              {/* Étapes nav */}
               <div className="form-steps-nav">
                 {STEP_LABELS.map((l, i) => (
                   <div key={l} className={`form-step-dot ${i + 1 < step ? 'done' : i + 1 === step ? 'active' : ''}`}>
@@ -749,10 +805,13 @@ function RegisterSection() {
                   </div>
                 ))}
               </div>
+
+              {/* Barre de progression */}
               <div className="form-progress">
                 <div className="form-progress-fill" style={{ width: `${progress}%` }} />
               </div>
 
+              {/* Contenu de l'étape */}
               <div className="form-body">
                 {step === 1 && <Step1 form={form} set={set} />}
                 {step === 2 && <Step2 form={form} set={set} toggleArr={toggleArr} />}
@@ -760,8 +819,10 @@ function RegisterSection() {
                 {step === 4 && <Step4 form={form} set={set} toggleArr={toggleArr} />}
               </div>
 
+              {/* Message d'erreur */}
               {error && <p className="form-error">{error}</p>}
 
+              {/* Navigation bas */}
               <div className="form-footer-nav">
                 {step > 1
                   ? <button className="btn-back-form" onClick={() => setStep(s => s - 1)}>← Back</button>
@@ -773,7 +834,7 @@ function RegisterSection() {
                   onClick={() => step < TOTAL ? setStep(s => s + 1) : handleSubmit()}
                 >
                   {step === TOTAL
-                    ? (sending ? 'Envoi en cours…' : 'Submit Application')
+                    ? (sending ? 'Sending…' : 'Submit Application')
                     : 'Continue →'}
                 </button>
               </div>
@@ -795,15 +856,21 @@ function RegisterSection() {
   )
 }
 
-// ─── FOOTER ──────────────────────────────────────────────────────────────────
+// ─── FOOTER ───────────────────────────────────────────────────────────────────
 
 function Footer() {
   return (
     <footer className="site-footer">
       <div className="footer-inner">
+
         <div className="footer-brand">
           <div className="footer-logo">
-            <Bot size={18} color="#fff" strokeWidth={2} />
+            <img
+              src="/logo.png"
+              alt="AI for Social Good"
+              style={{ height: 28, width: 'auto', borderRadius: 4 }}
+              onError={e => { e.target.style.display = 'none' }}
+            />
             <span>AI for Social Good · Cameroon 2026</span>
           </div>
           <p>
@@ -877,7 +944,7 @@ function Footer() {
   )
 }
 
-// ─── APP ─────────────────────────────────────────────────────────────────────
+// ─── APP ──────────────────────────────────────────────────────────────────────
 
 export default function App() {
   return (
