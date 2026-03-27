@@ -218,11 +218,11 @@ function Header() {
     <header className={`site-header ${scrolled ? 'scrolled' : ''}`}>
       <div className="header-inner">
 
-        {/* LOGO — image logolgsdia.png + texte */}
+        {/* LOGO — image logosdia.png + texte */}
         <a href="#home" className="site-logo">
           <div className="logo-icon">
             <img
-              src="/logolgsdia.png"
+              src="/logosdia.png"
               alt="AI for Social Good logo"
               className="logo-img"
               onError={e => {
