@@ -343,6 +343,90 @@ function PartnersBar() {
   )
 }
 
+// ─── ANIMATED COUNTER ─────────────────────────────────────────────────────────
+
+function AnimatedNumber({ target, suffix = '', duration = 1400, started }) {
+  const [display, setDisplay] = useState(0)
+  const rafRef = useRef(null)
+
+  useEffect(() => {
+    if (!started) return
+    const start     = performance.now()
+    const from      = 0
+    const to        = parseInt(target, 10)
+    const ease      = t => 1 - Math.pow(1 - t, 3) // ease-out cubic
+
+    const tick = now => {
+      const elapsed  = now - start
+      const progress = Math.min(elapsed / duration, 1)
+      setDisplay(Math.round(from + (to - from) * ease(progress)))
+      if (progress < 1) rafRef.current = requestAnimationFrame(tick)
+    }
+    rafRef.current = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(rafRef.current)
+  }, [started, target, duration])
+
+  return <>{display}{suffix}</>
+}
+
+// ─── COUNTDOWN ────────────────────────────────────────────────────────────────
+
+function Countdown() {
+  const EVENT_DATE = new Date('2026-04-06T08:00:00') // Jour J de l'événement
+
+  const calc = () => {
+    const now  = new Date()
+    const diff = EVENT_DATE - now
+    if (diff <= 0) return null
+    return {
+      days:    Math.floor(diff / 86400000),
+      hours:   Math.floor((diff % 86400000) / 3600000),
+      minutes: Math.floor((diff % 3600000)  / 60000),
+      seconds: Math.floor((diff % 60000)    / 1000),
+    }
+  }
+
+  const [time, setTime] = useState(calc)
+
+  useEffect(() => {
+    const t = setInterval(() => setTime(calc()), 1000)
+    return () => clearInterval(t)
+  }, [])
+
+  const [ref, visible] = useReveal()
+
+  if (!time) return (
+    <div className="countdown-section" ref={ref}>
+      <div className="countdown-inner">
+        <p className="countdown-label">The event has begun — follow live!</p>
+      </div>
+    </div>
+  )
+
+  const units = [
+    { val: time.days,    label: 'Days' },
+    { val: time.hours,   label: 'Hours' },
+    { val: time.minutes, label: 'Min' },
+    { val: time.seconds, label: 'Sec' },
+  ]
+
+  return (
+    <div className={`countdown-section fade-up ${visible ? 'visible' : ''}`} ref={ref}>
+      <div className="countdown-inner">
+        <p className="countdown-title">Event starts in</p>
+        <div className="countdown-grid">
+          {units.map(u => (
+            <div className="countdown-unit" key={u.label}>
+              <div className="countdown-val">{String(u.val).padStart(2, '0')}</div>
+              <div className="countdown-unit-label">{u.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 // ─── STATS ────────────────────────────────────────────────────────────────────
 
 function StatsSection() {
@@ -355,16 +439,24 @@ function StatsSection() {
           <h2>Innovating to change<br />lives in Cameroon.</h2>
         </div>
         <div className="stats-grid">
-          {STATS.map((s, i) => (
+          {STATS.map((s, i) => {
+            // Extrait la partie numérique et le suffixe éventuel (+, etc.)
+            const match  = s.num.match(/^(\d+)(\D*)$/)
+            const numVal = match ? match[1] : s.num
+            const suffix = match ? match[2] : ''
+            return (
             <div
               key={s.label}
               className={`stat-card fade-up ${visible ? 'visible' : ''}`}
               style={{ transitionDelay: `${i * 0.1}s` }}
             >
-              <div className="stat-num">{s.num}</div>
+              <div className="stat-num">
+                <AnimatedNumber target={numVal} suffix={suffix} started={visible} duration={1200 + i * 200} />
+              </div>
               <div className="stat-label">{s.label}</div>
             </div>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>
@@ -952,6 +1044,7 @@ export default function App() {
       <TopBar />
       <Header />
       <Hero />
+      <Countdown />
       <PartnersBar />
       <StatsSection />
       <AboutSection />

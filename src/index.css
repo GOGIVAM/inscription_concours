@@ -1141,3 +1141,105 @@ h2 {
   .features-inner { flex-direction: column; }
   .stats-grid { grid-template-columns: 1fr 1fr; }
 }
+
+/* ─── AJOUTE CES STYLES À LA FIN DE TON index.css ─────────────────────────── */
+
+/* ─── COUNTDOWN ──────────────────────────────────────────────────────────────── */
+
+.countdown-section {
+  background: var(--navy);
+  border-bottom: 3px solid var(--accent);
+  padding: 52px 0;
+  text-align: center;
+}
+.countdown-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.countdown-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 4px;
+}
+.countdown-title {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.6);
+  font-style: italic;
+  margin-bottom: 20px;
+}
+.countdown-grid {
+  display: flex;
+  gap: 0;
+  align-items: stretch;
+}
+.countdown-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 28px;
+  position: relative;
+}
+/* séparateur : entre les blocs */
+.countdown-unit:not(:last-child)::after {
+  content: ':';
+  position: absolute;
+  right: -2px;
+  top: 50%;
+  transform: translateY(-58%);
+  font-family: var(--serif);
+  font-size: 2.2rem;
+  color: rgba(255,255,255,0.2);
+  line-height: 1;
+}
+.countdown-val {
+  font-family: var(--serif);
+  font-size: clamp(2.8rem, 5vw, 4rem);
+  font-weight: 400;
+  color: #fff;
+  line-height: 1;
+  min-width: 2ch;
+  text-align: center;
+  /* Petit flip animation à chaque seconde */
+  animation: tickFlip 0.18s ease;
+}
+@keyframes tickFlip {
+  0%   { opacity: 0.4; transform: translateY(-4px); }
+  100% { opacity: 1;   transform: none; }
+}
+.countdown-unit-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-top: 8px;
+}
+
+/* ─── STAT NUM — override pour l'animation ────────────────────────────────── */
+/* Assure que le chiffre animé garde le même style qu'avant */
+.stat-num {
+  font-family: var(--serif);
+  font-size: 2.6rem;
+  font-weight: 400;
+  color: var(--navy);
+  line-height: 1;
+  margin-bottom: 6px;
+  /* Légère pulsation quand le compteur se lance */
+  transition: transform 0.1s ease;
+}
+
+/* ─── RESPONSIVE countdown ───────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .countdown-unit { padding: 16px 14px; }
+  .countdown-val  { font-size: 2.2rem; }
+  .countdown-unit:not(:last-child)::after { font-size: 1.6rem; right: -4px; }
+}
