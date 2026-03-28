@@ -2,12 +2,12 @@ import { useState, useEffect, useRef } from 'react'
 import {
   Calendar, Users, Trophy, Rocket, Bot, Leaf, GraduationCap,
   Handshake, BookOpen, ChevronRight, MapPin, Mail, ExternalLink,
-  ArrowRight, Cpu, Globe, Zap, ChevronLeft, CheckCircle2, Menu, X, Phone
+  ArrowRight, Cpu, Globe, Zap, ChevronLeft, CheckCircle2, Menu, X, Phone,
+  UserPlus, UsersRound
 } from 'lucide-react'
 import './index.css'
 
-// ─── SOCIAL ICONS (SVG inline, pas de dépendance) ────────────────────────────
-
+// ─── SOCIAL ICONS ─────────────────────────────────────────────────────────────
 function SocialIcon({ name, size = 16 }) {
   const paths = {
     twitter: (
@@ -39,11 +39,9 @@ function SocialIcon({ name, size = 16 }) {
 }
 
 // ─── CONFIG ───────────────────────────────────────────────────────────────────
-// Remplace par l'URL de ton déploiement Apps Script
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyUcGXqQ2gbEfQmkA5Uyt9SqmRIcjoO5TV-BaHIJbsAQwWsbzS7CiEgor3ex_C7NUVk/exec'
 
 // ─── DATA ─────────────────────────────────────────────────────────────────────
-
 const STATS = [
   { num: '5',   label: 'Days of Immersion' },
   { num: '40+', label: 'Young Participants' },
@@ -137,38 +135,68 @@ const EVENTS = [
 ]
 
 const PARTNERS = [
-  { name: 'ENSPD Douala',           abbr: 'ENSPD',   url: 'https://www.enspd.univ-douala.com', logo: '/polytech_douala.png' },
+  { name: 'ENSPD Douala',           abbr: 'ENSPD',    url: 'https://www.enspd.univ-douala.com', logo: '/polytech_douala.png' },
   { name: 'University of Douala',   abbr: 'UNIV-DLA', url: 'https://www.univ-douala.com',       logo: '/universite_de_douala.png' },
   { name: 'U.S. Embassy Cameroon',  abbr: 'US EMB',   url: 'https://cm.usembassy.gov',          logo: '/us_embassy_logo.png' },
   { name: 'Georgia State University',abbr: 'GSU',     url: 'https://www.gsu.edu',               logo: '/georgia_state_university.png' },
   { name: 'Georgia Tech',           abbr: 'GT',       url: 'https://www.gatech.edu',            logo: '/georgia_tech.png' },
 ]
 
+// ─── FORM CONFIG ──────────────────────────────────────────────────────────────
 const DOMAIN_OPTIONS = [
-  'Cameroonian Agriculture',
-  'Rural Health',
-  'Bilingual Education',
-  'Local Cybersecurity (low-resource)',
+  'Cameroonian Agriculture / AgriTech',
+  'Rural Health & Telemedicine',
+  'Bilingual Education & EdTech',
+  'Cybersecurity (low-resource context)',
+  'Mobile Fintech & Financial Inclusion',
+  'Local Language AI (Bassa, Bamiléké, etc.)',
+  'IoT & Clean Water',
   'Other (describe below)',
 ]
 const STACK_OPTIONS = [
-  'Python / PyTorch',
-  'C / Embedded',
+  'Python / PyTorch / TensorFlow',
+  'C / C++ / Embedded Systems',
+  'JavaScript / React / Node.js',
   'Git / GitHub',
-  'Streamlit / Flask (demos)',
-  'Federated Learning Edge',
+  'Streamlit / Flask (demos & APIs)',
+  'Mobile Development (Android / Flutter)',
+  'Federated Learning / Edge AI',
+  'Data Analysis (Pandas, SQL)',
 ]
-const ROLE_OPTIONS = ['ML Coder', 'Prototype Developer', 'Cameroon Field Tester', 'MVP Delivery PM']
-const STEP_LABELS  = ['Basic Info', 'AI Project', 'Skills', 'Commitment']
+const ROLE_OPTIONS = [
+  'ML Engineer / AI Developer',
+  'Prototype Developer (Frontend/Backend)',
+  'Field Tester & User Researcher (Cameroon)',
+  'Project Manager / Team Lead',
+  'Data Collector & Annotator',
+  'Business / Impact Analyst',
+]
+const STEP_LABELS = ['Profile', 'Participation', 'Technical Skills', 'Project Idea']
+
 const INIT = {
-  fullName: '', email: '', level: '', major: '', university: '',
-  domains: [], otherDomain: '', teamStatus: '',
-  programmingLevel: 0, stack: [], projects: '',
-  prototypeIdea: '', roles: [],
+  // Step 1 — Profile
+  fullName: '', email: '', phone: '', level: '', major: '', university: '',
+  // Step 2 — Participation mode
+  participationMode: '',     // 'solo' | 'team'
+  teamName: '',
+  teamSize: '',
+  teamMembersDescription: '',
+  teamLeader: '',            // 'yes' | 'no' (si équipe existante)
+  lookingForTeammates: '',   // 'yes' | 'no' (si solo ou équipe en formation)
+  // Step 3 — Technical skills
+  programmingLevel: 0,
+  stack: [],
+  projects: '',
+  // Step 4 — Project idea
+  domains: [],
+  otherDomain: '',
+  prototypeIdea: '',
+  cameroonImpact: '',
+  roles: [],
+  motivation: '',
 }
 
 // ─── HOOKS ────────────────────────────────────────────────────────────────────
-
 function useReveal(threshold = 0.1) {
   const ref = useRef(null)
   const [visible, setVisible] = useState(false)
@@ -185,7 +213,6 @@ function useReveal(threshold = 0.1) {
 }
 
 // ─── TOP BAR ──────────────────────────────────────────────────────────────────
-
 function TopBar() {
   return (
     <div className="topbar">
@@ -203,10 +230,9 @@ function TopBar() {
 }
 
 // ─── HEADER ───────────────────────────────────────────────────────────────────
-
 function Header() {
-  const [scrolled, setScrolled]   = useState(false)
-  const [menuOpen, setMenuOpen]   = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 30)
@@ -217,20 +243,10 @@ function Header() {
   return (
     <header className={`site-header ${scrolled ? 'scrolled' : ''}`}>
       <div className="header-inner">
-
-        {/* LOGO — image logosdia.png + texte */}
         <a href="#home" className="site-logo">
           <div className="logo-icon">
-            <img
-              src="/logosdia.png"
-              alt="AI for Social Good logo"
-              className="logo-img"
-              onError={e => {
-                e.target.style.display = 'none'
-                e.target.nextSibling.style.display = 'flex'
-              }}
-            />
-            {/* Fallback si logo.png absent */}
+            <img src="/logosdia.png" alt="AI for Social Good logo" className="logo-img"
+              onError={e => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex' }} />
             <span className="logo-icon-fallback" style={{ display: 'none' }}>
               <Bot size={20} color="#fff" strokeWidth={2.2} />
             </span>
@@ -268,16 +284,13 @@ function Header() {
 }
 
 // ─── HERO ─────────────────────────────────────────────────────────────────────
-
 function Hero() {
   return (
     <section className="hero" id="home">
       <div className="hero-overlay" />
       <div className="hero-inner">
         <div className="hero-content">
-          <p className="hero-eyebrow">
-            Reciprocal Exchange Award · ENSPD × GSU × Georgia Tech
-          </p>
+          <p className="hero-eyebrow">Reciprocal Exchange Award · ENSPD × GSU × Georgia Tech</p>
           <h1 className="hero-title">
             AI for Social Good:<br />
             <em>Youth Innovation<br />Exchange in Cameroon</em>
@@ -306,7 +319,6 @@ function Hero() {
 }
 
 // ─── PARTNERS BAR ─────────────────────────────────────────────────────────────
-
 function PartnersBar() {
   const [ref, visible] = useReveal()
   return (
@@ -315,26 +327,11 @@ function PartnersBar() {
         <p className="partners-label">In Partnership With</p>
         <div className="partners-row">
           {PARTNERS.map((p) => (
-            <a
-              key={p.name}
-              href={p.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="partner-logo-link"
-              title={p.name}
-            >
-              <img
-                src={p.logo}
-                alt={p.name}
-                className="partner-logo-img"
-                onError={e => {
-                  e.target.style.display = 'none'
-                  e.target.nextSibling.style.display = 'flex'
-                }}
-              />
-              <span className="partner-logo-fallback" style={{ display: 'none' }}>
-                {p.abbr}
-              </span>
+            <a key={p.name} href={p.url} target="_blank" rel="noopener noreferrer"
+              className="partner-logo-link" title={p.name}>
+              <img src={p.logo} alt={p.name} className="partner-logo-img"
+                onError={e => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex' }} />
+              <span className="partner-logo-fallback" style={{ display: 'none' }}>{p.abbr}</span>
             </a>
           ))}
         </div>
@@ -344,70 +341,51 @@ function PartnersBar() {
 }
 
 // ─── ANIMATED COUNTER ─────────────────────────────────────────────────────────
-
 function AnimatedNumber({ target, suffix = '', duration = 1400, started }) {
   const [display, setDisplay] = useState(0)
   const rafRef = useRef(null)
-
   useEffect(() => {
     if (!started) return
-    const start     = performance.now()
-    const from      = 0
-    const to        = parseInt(target, 10)
-    const ease      = t => 1 - Math.pow(1 - t, 3) // ease-out cubic
-
+    const start = performance.now()
+    const to = parseInt(target, 10)
+    const ease = t => 1 - Math.pow(1 - t, 3)
     const tick = now => {
-      const elapsed  = now - start
-      const progress = Math.min(elapsed / duration, 1)
-      setDisplay(Math.round(from + (to - from) * ease(progress)))
+      const progress = Math.min((now - start) / duration, 1)
+      setDisplay(Math.round(to * ease(progress)))
       if (progress < 1) rafRef.current = requestAnimationFrame(tick)
     }
     rafRef.current = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(rafRef.current)
   }, [started, target, duration])
-
   return <>{display}{suffix}</>
 }
 
 // ─── COUNTDOWN ────────────────────────────────────────────────────────────────
-
 function Countdown() {
-  const EVENT_DATE = new Date('2026-04-06T08:00:00') // Jour J de l'événement
-
+  const EVENT_DATE = new Date('2026-04-06T08:00:00')
   const calc = () => {
-    const now  = new Date()
-    const diff = EVENT_DATE - now
+    const diff = EVENT_DATE - new Date()
     if (diff <= 0) return null
     return {
-      days:    Math.floor(diff / 86400000),
-      hours:   Math.floor((diff % 86400000) / 3600000),
-      minutes: Math.floor((diff % 3600000)  / 60000),
-      seconds: Math.floor((diff % 60000)    / 1000),
+      days: Math.floor(diff / 86400000),
+      hours: Math.floor((diff % 86400000) / 3600000),
+      minutes: Math.floor((diff % 3600000) / 60000),
+      seconds: Math.floor((diff % 60000) / 1000),
     }
   }
-
   const [time, setTime] = useState(calc)
-
-  useEffect(() => {
-    const t = setInterval(() => setTime(calc()), 1000)
-    return () => clearInterval(t)
-  }, [])
-
+  useEffect(() => { const t = setInterval(() => setTime(calc()), 1000); return () => clearInterval(t) }, [])
   const [ref, visible] = useReveal()
 
   if (!time) return (
     <div className="countdown-section" ref={ref}>
-      <div className="countdown-inner">
-        <p className="countdown-label">The event has begun — follow live!</p>
-      </div>
+      <div className="countdown-inner"><p className="countdown-label">The event has begun — follow live!</p></div>
     </div>
   )
 
   const units = [
-    { val: time.days,    label: 'Days' },
-    { val: time.hours,   label: 'Hours' },
-    { val: time.minutes, label: 'Min' },
-    { val: time.seconds, label: 'Sec' },
+    { val: time.days, label: 'Days' }, { val: time.hours, label: 'Hours' },
+    { val: time.minutes, label: 'Min' }, { val: time.seconds, label: 'Sec' },
   ]
 
   return (
@@ -428,7 +406,6 @@ function Countdown() {
 }
 
 // ─── STATS ────────────────────────────────────────────────────────────────────
-
 function StatsSection() {
   const [ref, visible] = useReveal()
   return (
@@ -440,21 +417,17 @@ function StatsSection() {
         </div>
         <div className="stats-grid">
           {STATS.map((s, i) => {
-            // Extrait la partie numérique et le suffixe éventuel (+, etc.)
-            const match  = s.num.match(/^(\d+)(\D*)$/)
+            const match = s.num.match(/^(\d+)(\D*)$/)
             const numVal = match ? match[1] : s.num
             const suffix = match ? match[2] : ''
             return (
-            <div
-              key={s.label}
-              className={`stat-card fade-up ${visible ? 'visible' : ''}`}
-              style={{ transitionDelay: `${i * 0.1}s` }}
-            >
-              <div className="stat-num">
-                <AnimatedNumber target={numVal} suffix={suffix} started={visible} duration={1200 + i * 200} />
+              <div key={s.label} className={`stat-card fade-up ${visible ? 'visible' : ''}`}
+                style={{ transitionDelay: `${i * 0.1}s` }}>
+                <div className="stat-num">
+                  <AnimatedNumber target={numVal} suffix={suffix} started={visible} duration={1200 + i * 200} />
+                </div>
+                <div className="stat-label">{s.label}</div>
               </div>
-              <div className="stat-label">{s.label}</div>
-            </div>
             )
           })}
         </div>
@@ -464,7 +437,6 @@ function StatsSection() {
 }
 
 // ─── ABOUT ────────────────────────────────────────────────────────────────────
-
 function AboutSection() {
   const [ref, visible] = useReveal()
   return (
@@ -505,18 +477,14 @@ function AboutSection() {
 }
 
 // ─── FEATURES STRIP ───────────────────────────────────────────────────────────
-
 function FeaturesStrip() {
   const [ref, visible] = useReveal()
   return (
     <div className="features-strip" ref={ref}>
       <div className="features-inner">
         {FEATURES.map((f, i) => (
-          <div
-            key={f.label}
-            className={`feature-item fade-up ${visible ? 'visible' : ''}`}
-            style={{ transitionDelay: `${i * 0.07}s` }}
-          >
+          <div key={f.label} className={`feature-item fade-up ${visible ? 'visible' : ''}`}
+            style={{ transitionDelay: `${i * 0.07}s` }}>
             <f.icon size={20} strokeWidth={1.8} />
             <span>{f.label}</span>
           </div>
@@ -527,16 +495,13 @@ function FeaturesStrip() {
 }
 
 // ─── TESTIMONIALS ──────────────────────────────────────────────────────────────
-
 function Testimonials() {
   const [active, setActive] = useState(0)
-  const [ref, visible]      = useReveal()
-
+  const [ref, visible] = useReveal()
   useEffect(() => {
     const t = setInterval(() => setActive(a => (a + 1) % TESTIMONIALS.length), 6000)
     return () => clearInterval(t)
   }, [])
-
   const t = TESTIMONIALS[active]
 
   return (
@@ -559,7 +524,6 @@ function Testimonials() {
             </button>
           </div>
         </div>
-
         <div className="testimonials-right">
           <div className="testimonial-card" key={active}>
             <div className="quote-glyph">&ldquo;</div>
@@ -579,7 +543,6 @@ function Testimonials() {
 }
 
 // ─── DOMAINS ───────────────────────────────────────────────────────────────────
-
 function DomainsSection() {
   const [ref, visible] = useReveal()
   return (
@@ -594,11 +557,8 @@ function DomainsSection() {
         </div>
         <div className="domains-tags">
           {DOMAINS.map((d, i) => (
-            <span
-              key={d}
-              className={`domain-tag fade-up ${visible ? 'visible' : ''}`}
-              style={{ transitionDelay: `${i * 0.035}s` }}
-            >
+            <span key={d} className={`domain-tag fade-up ${visible ? 'visible' : ''}`}
+              style={{ transitionDelay: `${i * 0.035}s` }}>
               {d}
             </span>
           ))}
@@ -609,7 +569,6 @@ function DomainsSection() {
 }
 
 // ─── EVENTS ────────────────────────────────────────────────────────────────────
-
 function EventsSection() {
   const [ref, visible] = useReveal()
   return (
@@ -626,14 +585,9 @@ function EventsSection() {
         </div>
         <div className="events-grid">
           {EVENTS.map((e, i) => (
-            <div
-              key={e.title}
-              className={`event-card fade-up ${visible ? 'visible' : ''}`}
-              style={{ transitionDelay: `${i * 0.12}s` }}
-            >
-              <div className="event-icon-wrap">
-                <e.icon size={28} strokeWidth={1.5} />
-              </div>
+            <div key={e.title} className={`event-card fade-up ${visible ? 'visible' : ''}`}
+              style={{ transitionDelay: `${i * 0.12}s` }}>
+              <div className="event-icon-wrap"><e.icon size={28} strokeWidth={1.5} /></div>
               <div className="event-tag">{e.tag}</div>
               <h3 className="event-title">{e.title}</h3>
               <p className="event-desc">{e.desc}</p>
@@ -649,108 +603,214 @@ function EventsSection() {
   )
 }
 
-// ─── FORM STEPS ────────────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════════════════════
+// ─── FORM STEPS (REDESIGNED) ──────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════════════════════
 
+// STEP 1 — Profile
 function Step1({ form, set }) {
   return (
     <>
-      <h3 className="step-title">Personal Information</h3>
-      <p className="step-sub">Tell us who you are and your institution.</p>
+      <h3 className="step-title">Your Profile</h3>
+      <p className="step-sub">Tell us about yourself and your academic background.</p>
+
       <div className="form-row">
         <div className="form-group">
           <label>Full Name *</label>
-          <input type="text" placeholder="e.g. Marie Nguetsa" value={form.fullName} onChange={e => set('fullName', e.target.value)} />
+          <input type="text" placeholder="e.g. Marie Nguetsa"
+            value={form.fullName} onChange={e => set('fullName', e.target.value)} />
         </div>
         <div className="form-group">
-          <label>University Email *</label>
-          <input type="email" placeholder="firstname.lastname@univ-douala.cm" value={form.email} onChange={e => set('email', e.target.value)} />
+          <label>Email Address *</label>
+          <input type="email" placeholder="your.name@univ-douala.cm"
+            value={form.email} onChange={e => set('email', e.target.value)} />
         </div>
       </div>
+
       <div className="form-row">
+        <div className="form-group">
+          <label>Phone / WhatsApp</label>
+          <input type="tel" placeholder="e.g. +237 6XX XXX XXX"
+            value={form.phone} onChange={e => set('phone', e.target.value)} />
+        </div>
         <div className="form-group">
           <label>Level of Study *</label>
           <select value={form.level} onChange={e => set('level', e.target.value)}>
             <option value="">Select…</option>
             <option>L3</option>
-            <option>M1/M2</option>
+            <option>M1</option>
+            <option>M2</option>
             <option>PhD</option>
+            <option>Professional / Other</option>
           </select>
         </div>
+      </div>
+
+      <div className="form-row">
         <div className="form-group">
           <label>Field / Department *</label>
-          <input type="text" placeholder="e.g. Computer Engineering, ENSPD" value={form.major} onChange={e => set('major', e.target.value)} />
+          <input type="text" placeholder="e.g. Computer Engineering, Data Science"
+            value={form.major} onChange={e => set('major', e.target.value)} />
         </div>
-      </div>
-      <div className="form-group">
-        <label>University / Institution *</label>
-        <input type="text" placeholder="e.g. University of Douala, ENSPD" value={form.university} onChange={e => set('university', e.target.value)} />
+        <div className="form-group">
+          <label>University / Institution *</label>
+          <input type="text" placeholder="e.g. ENSPD, University of Douala"
+            value={form.university} onChange={e => set('university', e.target.value)} />
+        </div>
       </div>
     </>
   )
 }
 
-function Step2({ form, set, toggleArr }) {
+// STEP 2 — Participation Mode (NOUVEAU)
+function Step2({ form, set }) {
   return (
     <>
-      <h3 className="step-title">Your AI Project</h3>
-      <p className="step-sub">Describe the domain you are targeting and your team status.</p>
+      <h3 className="step-title">Participation Mode</h3>
+      <p className="step-sub">Are you applying solo or as part of a team? Both are welcome.</p>
+
+      {/* Mode selector */}
       <div className="form-group">
-        <label>Target Domain</label>
-        <div className="check-list">
-          {DOMAIN_OPTIONS.map(d => (
-            <label className="check-item" key={d}>
-              <input type="checkbox" checked={form.domains.includes(d)} onChange={() => toggleArr('domains', d)} />
-              <span className="check-box" /><span>{d}</span>
-            </label>
-          ))}
+        <label>How are you participating? *</label>
+        <div className="mode-selector">
+          <button
+            type="button"
+            className={`mode-card ${form.participationMode === 'solo' ? 'active' : ''}`}
+            onClick={() => set('participationMode', 'solo')}
+          >
+            <UserPlus size={28} strokeWidth={1.5} />
+            <strong>Solo</strong>
+            <span>I'm applying alone and open to joining or forming a team during the event</span>
+          </button>
+          <button
+            type="button"
+            className={`mode-card ${form.participationMode === 'team' ? 'active' : ''}`}
+            onClick={() => set('participationMode', 'team')}
+          >
+            <UsersRound size={28} strokeWidth={1.5} />
+            <strong>As a Team</strong>
+            <span>I'm applying with a pre-formed team (2–5 members)</span>
+          </button>
         </div>
       </div>
-      {form.domains.includes('Other (describe below)') && (
+
+      {/* Solo — open to teammates? */}
+      {form.participationMode === 'solo' && (
         <div className="form-group">
-          <label>Describe your domain</label>
-          <textarea placeholder="Briefly describe…" value={form.otherDomain} onChange={e => set('otherDomain', e.target.value)} />
+          <label>Are you open to being matched with other participants to form a team?</label>
+          <div className="check-list">
+            {['Yes, I want to be matched with a team', 'No, I prefer to compete solo (individual track)'].map(s => (
+              <label className="check-item" key={s}>
+                <input type="radio" name="lookingForTeammates" checked={form.lookingForTeammates === s}
+                  onChange={() => set('lookingForTeammates', s)} />
+                <span className="check-box radio" /><span>{s}</span>
+              </label>
+            ))}
+          </div>
+          {form.lookingForTeammates === 'Yes, I want to be matched with a team' && (
+            <div style={{ marginTop: '0.8rem' }}>
+              <label style={{ fontSize: '0.82rem', fontWeight: 600, marginBottom: '0.35rem', display: 'block' }}>
+                What skills are you looking for in teammates?
+              </label>
+              <textarea rows={3} placeholder="e.g. Looking for someone with mobile dev skills and a field researcher based in rural Cameroon"
+                value={form.teamMembersDescription} onChange={e => set('teamMembersDescription', e.target.value)} />
+            </div>
+          )}
         </div>
       )}
-      <div className="form-group">
-        <label>Team Status</label>
-        <div className="check-list">
-          {['Existing team / startup', 'Team in formation'].map(s => (
-            <label className="check-item" key={s}>
-              <input type="radio" name="teamStatus" checked={form.teamStatus === s} onChange={() => set('teamStatus', s)} />
-              <span className="check-box radio" /><span>{s}</span>
-            </label>
-          ))}
-        </div>
-      </div>
+
+      {/* Team — team details */}
+      {form.participationMode === 'team' && (
+        <>
+          <div className="form-row">
+            <div className="form-group">
+              <label>Team Name *</label>
+              <input type="text" placeholder="e.g. AgriVision Cameroon"
+                value={form.teamName} onChange={e => set('teamName', e.target.value)} />
+            </div>
+            <div className="form-group">
+              <label>Number of Team Members *</label>
+              <select value={form.teamSize} onChange={e => set('teamSize', e.target.value)}>
+                <option value="">Select…</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="form-group">
+            <label>Are you the Team Leader? *</label>
+            <div className="check-list">
+              {['Yes, I am the team leader / main contact', 'No, I am a team member (the leader will apply separately)'].map(s => (
+                <label className="check-item" key={s}>
+                  <input type="radio" name="teamLeader" checked={form.teamLeader === s}
+                    onChange={() => set('teamLeader', s)} />
+                  <span className="check-box radio" /><span>{s}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <div className="form-group">
+            <label>Briefly describe your team members</label>
+            <textarea rows={4}
+              placeholder={`e.g.\n- Jean Mballa (M2 AI, ENSPD) — ML Engineer\n- Fatima Aliou (L3 Telecom) — Data Collector\n- Paul Tabi (M1 CS) — Frontend Developer`}
+              value={form.teamMembersDescription} onChange={e => set('teamMembersDescription', e.target.value)} />
+            <small style={{ color: 'var(--text-muted, #888)', fontSize: '0.76rem' }}>
+              Each team member should ideally submit their own application as well.
+            </small>
+          </div>
+
+          <div className="form-group">
+            <label>Is your team still looking for additional members?</label>
+            <div className="check-list">
+              {['Yes, we are open to 1–2 more members', 'No, our team is complete'].map(s => (
+                <label className="check-item" key={s}>
+                  <input type="radio" name="lookingForTeammates2" checked={form.lookingForTeammates === s}
+                    onChange={() => set('lookingForTeammates', s)} />
+                  <span className="check-box radio" /><span>{s}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
     </>
   )
 }
 
+// STEP 3 — Technical Skills
 function Step3({ form, set, toggleArr }) {
   return (
     <>
       <h3 className="step-title">Technical Skills</h3>
-      <p className="step-sub">Rate your level and the tools you master.</p>
+      <p className="step-sub">Help us understand your technical background so we can place you in the right track.</p>
+
       <div className="form-group">
-        <label>Programming Level (1 = Beginner → 5 = Expert)</label>
+        <label>Overall Programming / Technical Level</label>
         <div className="scale-row">
           <span className="scale-label">Beginner</span>
           {[1, 2, 3, 4, 5].map(n => (
-            <button
-              key={n}
-              type="button"
+            <button key={n} type="button"
               className={`scale-btn ${form.programmingLevel === n ? 'active' : ''}`}
-              onClick={() => set('programmingLevel', n)}
-            >
+              onClick={() => set('programmingLevel', n)}>
               {n}
             </button>
           ))}
           <span className="scale-label">Expert</span>
         </div>
+        <div className="scale-hints">
+          <span>1 = No coding experience</span>
+          <span>3 = Comfortable with Python/ML basics</span>
+          <span>5 = Deployed AI projects</span>
+        </div>
       </div>
+
       <div className="form-group">
-        <label>Technical Stack</label>
-        <div className="check-list">
+        <label>Technologies & Tools you are comfortable with</label>
+        <div className="check-list two-col">
           {STACK_OPTIONS.map(s => (
             <label className="check-item" key={s}>
               <input type="checkbox" checked={form.stack.includes(s)} onChange={() => toggleArr('stack', s)} />
@@ -759,36 +819,61 @@ function Step3({ form, set, toggleArr }) {
           ))}
         </div>
       </div>
+
       <div className="form-group">
-        <label>Existing Projects (GitHub links welcome)</label>
-        <textarea
-          rows={4}
-          placeholder="e.g. github.com/myprofile/agro-detect – banana disease detection (TFLite, 84% accuracy)"
-          value={form.projects}
-          onChange={e => set('projects', e.target.value)}
-        />
+        <label>Existing Projects or Portfolio</label>
+        <textarea rows={4}
+          placeholder={`Share GitHub links, demos, or brief descriptions:\ne.g. github.com/marie/agro-detect — banana disease detection app (TFLite, 84% accuracy, tested in Douala)`}
+          value={form.projects} onChange={e => set('projects', e.target.value)} />
       </div>
     </>
   )
 }
 
+// STEP 4 — Project Idea & Commitment
 function Step4({ form, set, toggleArr }) {
   return (
     <>
-      <h3 className="step-title">Your Commitment</h3>
-      <p className="step-sub">Describe your prototype idea and desired role.</p>
+      <h3 className="step-title">Your Project Idea</h3>
+      <p className="step-sub">Describe the AI solution you want to build and the impact it could have in Cameroon.</p>
+
       <div className="form-group">
-        <label>Prototype Idea + Cameroonian Impact</label>
-        <textarea
-          rows={5}
-          placeholder={`e.g. "Banana disease app, tested in Douala — detects Fusarium wilt via smartphone photo without internet."`}
-          value={form.prototypeIdea}
-          onChange={e => set('prototypeIdea', e.target.value)}
-        />
+        <label>Target Domain(s) *</label>
+        <div className="check-list two-col">
+          {DOMAIN_OPTIONS.map(d => (
+            <label className="check-item" key={d}>
+              <input type="checkbox" checked={form.domains.includes(d)} onChange={() => toggleArr('domains', d)} />
+              <span className="check-box" /><span>{d}</span>
+            </label>
+          ))}
+        </div>
       </div>
+
+      {form.domains.includes('Other (describe below)') && (
+        <div className="form-group">
+          <label>Describe your domain</label>
+          <textarea rows={2} placeholder="Briefly describe the problem area…"
+            value={form.otherDomain} onChange={e => set('otherDomain', e.target.value)} />
+        </div>
+      )}
+
       <div className="form-group">
-        <label>Desired Roles in the Team</label>
-        <div className="check-list">
+        <label>Prototype Idea *</label>
+        <textarea rows={4}
+          placeholder={`Describe the AI solution you want to build:\ne.g. "A smartphone app that detects banana diseases (Fusarium wilt) from photos — works offline, designed for farmers in Littoral region."`}
+          value={form.prototypeIdea} onChange={e => set('prototypeIdea', e.target.value)} />
+      </div>
+
+      <div className="form-group">
+        <label>Expected Impact in Cameroon</label>
+        <textarea rows={3}
+          placeholder={`Who will benefit and how?\ne.g. "~15,000 smallholder banana farmers in Mungo Valley could reduce crop losses by 30%."`}
+          value={form.cameroonImpact} onChange={e => set('cameroonImpact', e.target.value)} />
+      </div>
+
+      <div className="form-group">
+        <label>Desired Role(s) in the Team</label>
+        <div className="check-list two-col">
           {ROLE_OPTIONS.map(r => (
             <label className="check-item" key={r}>
               <input type="checkbox" checked={form.roles.includes(r)} onChange={() => toggleArr('roles', r)} />
@@ -797,18 +882,24 @@ function Step4({ form, set, toggleArr }) {
           ))}
         </div>
       </div>
+
+      <div className="form-group">
+        <label>Why do you want to join this program?</label>
+        <textarea rows={3}
+          placeholder="Tell us your motivation and what you hope to achieve or learn…"
+          value={form.motivation} onChange={e => set('motivation', e.target.value)} />
+      </div>
     </>
   )
 }
 
 // ─── REGISTER SECTION ──────────────────────────────────────────────────────────
-
 function RegisterSection() {
-  const [step, setStep]         = useState(1)
-  const [form, setForm]         = useState(INIT)
+  const [step, setStep] = useState(1)
+  const [form, setForm] = useState(INIT)
   const [submitted, setSubmitted] = useState(false)
-  const [sending, setSending]   = useState(false)
-  const [error, setError]       = useState(null)
+  const [sending, setSending] = useState(false)
+  const [error, setError] = useState(null)
   const TOTAL = 4
 
   const set = (k, v) => setForm(f => ({ ...f, [k]: v }))
@@ -824,28 +915,34 @@ function RegisterSection() {
     setSending(true)
     setError(null)
     try {
-      // mode: 'no-cors' est obligatoire pour Apps Script — on ne peut pas lire la réponse
       await fetch(APPS_SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'text/plain' },
         body: JSON.stringify({
-          fullName:         form.fullName,
-          email:            form.email,
-          level:            form.level,
-          major:            form.major,
-          university:       form.university,
-          domains:          form.domains.join(', '),
-          otherDomain:      form.otherDomain,
-          teamStatus:       form.teamStatus,
-          programmingLevel: form.programmingLevel,
-          stack:            form.stack.join(', '),
-          projects:         form.projects,
-          prototypeIdea:    form.prototypeIdea,
-          roles:            form.roles.join(', '),
+          fullName:               form.fullName,
+          email:                  form.email,
+          phone:                  form.phone,
+          level:                  form.level,
+          major:                  form.major,
+          university:             form.university,
+          participationMode:      form.participationMode,
+          teamName:               form.teamName,
+          teamSize:               form.teamSize,
+          teamLeader:             form.teamLeader,
+          teamMembersDescription: form.teamMembersDescription,
+          lookingForTeammates:    form.lookingForTeammates,
+          programmingLevel:       form.programmingLevel,
+          stack:                  form.stack.join(', '),
+          projects:               form.projects,
+          domains:                form.domains.join(', '),
+          otherDomain:            form.otherDomain,
+          prototypeIdea:          form.prototypeIdea,
+          cameroonImpact:         form.cameroonImpact,
+          roles:                  form.roles.join(', '),
+          motivation:             form.motivation,
         }),
       })
-      // Avec no-cors on suppose succès si pas d'exception réseau
       setSubmitted(true)
     } catch {
       setError('Network error. Check your connection and try again.')
@@ -858,14 +955,33 @@ function RegisterSection() {
     <section className={`register-section fade-up ${visible ? 'visible' : ''}`} id="register" ref={ref}>
       <div className="register-inner">
 
-        {/* Colonne gauche — infos */}
+        {/* Left column */}
         <div className="register-left">
           <p className="section-label">2026 Application</p>
           <h2>Join the Exchange</h2>
           <p className="body-text">
             Complete the 4-step form to apply for the <strong>AI for Social Good Youth Innovation Exchange</strong>.
-            Open to L3, M1/M2 and PhD students from Cameroonian universities.
+            Open to L3, M1/M2 and PhD students from Cameroonian universities — solo or as a team.
           </p>
+
+          {/* Participation modes callout */}
+          <div className="register-mode-callout">
+            <div className="callout-item">
+              <UserPlus size={18} />
+              <div>
+                <strong>Solo Track</strong>
+                <span>Apply alone — we'll help match you with a team, or you can compete individually.</span>
+              </div>
+            </div>
+            <div className="callout-item">
+              <UsersRound size={18} />
+              <div>
+                <strong>Team Track</strong>
+                <span>Apply with your team of 2–5 members. Each member should ideally submit their own form.</span>
+              </div>
+            </div>
+          </div>
+
           <div className="register-info-list">
             <div className="register-info-item">
               <Calendar size={16} />
@@ -877,16 +993,19 @@ function RegisterSection() {
             </div>
             <div className="register-info-item">
               <Mail size={16} />
-              <span>contact@aiforsocialgood-cameroon.org</span>
+              <span>jean.ndoumbe02@gmail.com</span>
+            </div>
+            <div className="register-info-item">
+              <Mail size={16} />
+              <span>armiellengaffo@gmail.com</span>
             </div>
           </div>
         </div>
 
-        {/* Colonne droite — formulaire */}
+        {/* Right column — form */}
         <div className="register-right">
           {!submitted ? (
             <>
-              {/* Étapes nav */}
               <div className="form-steps-nav">
                 {STEP_LABELS.map((l, i) => (
                   <div key={l} className={`form-step-dot ${i + 1 < step ? 'done' : i + 1 === step ? 'active' : ''}`}>
@@ -898,12 +1017,10 @@ function RegisterSection() {
                 ))}
               </div>
 
-              {/* Barre de progression */}
               <div className="form-progress">
                 <div className="form-progress-fill" style={{ width: `${progress}%` }} />
               </div>
 
-              {/* Contenu de l'étape */}
               <div className="form-body">
                 {step === 1 && <Step1 form={form} set={set} />}
                 {step === 2 && <Step2 form={form} set={set} toggleArr={toggleArr} />}
@@ -911,23 +1028,16 @@ function RegisterSection() {
                 {step === 4 && <Step4 form={form} set={set} toggleArr={toggleArr} />}
               </div>
 
-              {/* Message d'erreur */}
               {error && <p className="form-error">{error}</p>}
 
-              {/* Navigation bas */}
               <div className="form-footer-nav">
                 {step > 1
                   ? <button className="btn-back-form" onClick={() => setStep(s => s - 1)}>← Back</button>
                   : <span />
                 }
-                <button
-                  className="btn-primary"
-                  disabled={sending}
-                  onClick={() => step < TOTAL ? setStep(s => s + 1) : handleSubmit()}
-                >
-                  {step === TOTAL
-                    ? (sending ? 'Sending…' : 'Submit Application')
-                    : 'Continue →'}
+                <button className="btn-primary" disabled={sending}
+                  onClick={() => step < TOTAL ? setStep(s => s + 1) : handleSubmit()}>
+                  {step === TOTAL ? (sending ? 'Sending…' : 'Submit Application') : 'Continue →'}
                 </button>
               </div>
             </>
@@ -936,10 +1046,20 @@ function RegisterSection() {
               <CheckCircle2 size={48} strokeWidth={1.5} />
               <h3>Application Submitted!</h3>
               <p>
-                Thank you, <strong>{form.fullName}</strong>! We will contact you at <em>{form.email}</em> within 2 weeks.
+                Thank you, <strong>{form.fullName}</strong>!
+                {form.participationMode === 'team' && form.teamName && (
+                  <> Your team <strong>"{form.teamName}"</strong> is registered.</>
+                )}
+                <br /><br />
+                We will contact you at <em>{form.email}</em> within 2 weeks.
                 <br /><br />
                 Start preparing your prototype — <strong>Cameroon needs you.</strong>
               </p>
+              {(form.participationMode === 'team') && (
+                <p style={{ marginTop: '0.8rem', fontSize: '0.85rem', opacity: 0.8 }}>
+                  Remind your teammates to submit their own applications as well.
+                </p>
+              )}
             </div>
           )}
         </div>
@@ -949,20 +1069,15 @@ function RegisterSection() {
 }
 
 // ─── FOOTER ───────────────────────────────────────────────────────────────────
-
 function Footer() {
   return (
     <footer className="site-footer">
       <div className="footer-inner">
-
         <div className="footer-brand">
           <div className="footer-logo">
-            <img
-              src="/logo.png"
-              alt="AI for Social Good"
+            <img src="/logo.png" alt="AI for Social Good"
               style={{ height: 28, width: 'auto', borderRadius: 4 }}
-              onError={e => { e.target.style.display = 'none' }}
-            />
+              onError={e => { e.target.style.display = 'none' }} />
             <span>AI for Social Good · Cameroon 2026</span>
           </div>
           <p>
@@ -970,8 +1085,11 @@ function Footer() {
             Georgia State University, Georgia Tech and the U.S. Embassy in Cameroon.
           </p>
           <div className="footer-contacts">
-            <a href="mailto:contact@aiforsocialgood-cameroon.org">
-              <Mail size={13} /> contact@aiforsocialgood-cameroon.org
+            <a href="mailto:jean.ndoumbe02@gmail.com">
+              <Mail size={13} /> jean.ndoumbe02@gmail.com
+            </a>
+            <a href="mailto:armiellengaffo@gmail.com">
+              <Mail size={13} /> armiellengaffo@gmail.com
             </a>
             <a href="https://maps.google.com/?q=University+of+Douala+Cameroon" target="_blank" rel="noopener noreferrer">
               <MapPin size={13} /> University of Douala, Cameroon
@@ -1022,7 +1140,7 @@ function Footer() {
           <ul>
             <li><a href="#home">April 6–11, 2026</a></li>
             <li><a href="#register">Application</a></li>
-            <li><a href="mailto:contact@aiforsocialgood-cameroon.org">Contact</a></li>
+            <li><a href="mailto:jean.ndoumbe02@gmail.com">Contact</a></li>
             <li><a href="#about">FAQ</a></li>
           </ul>
         </div>
@@ -1037,7 +1155,6 @@ function Footer() {
 }
 
 // ─── APP ──────────────────────────────────────────────────────────────────────
-
 export default function App() {
   return (
     <>
