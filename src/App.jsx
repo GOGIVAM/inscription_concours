@@ -1000,7 +1000,7 @@ function Step1({ form, set }) {
       <div className="form-row">
         <div className="form-group">
           <label>Full Name *</label>
-          <input type="text" placeholder="e.g. Marie Nguetsa" value={form.fullName} onChange={e => set('fullName', e.target.value)} />
+          <input type="text" placeholder="e.g.Georges EKAMBI" value={form.fullName} onChange={e => set('fullName', e.target.value)} />
         </div>
         <div className="form-group">
           <label>Email Address *</label>
