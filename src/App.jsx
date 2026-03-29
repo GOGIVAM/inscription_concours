@@ -3,11 +3,11 @@ import {
   Calendar, Users, Trophy, Rocket, Bot, Leaf, GraduationCap,
   Handshake, BookOpen, ChevronRight, MapPin, Mail, ExternalLink,
   ArrowRight, Cpu, Globe, Zap, ChevronLeft, CheckCircle2, Menu, X, Phone,
-  UserPlus, UsersRound
+  UserPlus, UsersRound,
 } from 'lucide-react'
 import './index.css'
 
-// ─── SOCIAL ICONS ─────────────────────────────────────────────────────────────
+// ─── Social icons ───────────────────────────────────────────
 function SocialIcon({ name, size = 16 }) {
   const paths = {
     twitter: (
@@ -18,8 +18,7 @@ function SocialIcon({ name, size = 16 }) {
     linkedin: (
       <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-        <rect x="2" y="9" width="4" height="12" />
-        <circle cx="4" cy="4" r="2" />
+        <rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" />
       </svg>
     ),
     instagram: (
@@ -38,10 +37,9 @@ function SocialIcon({ name, size = 16 }) {
   return paths[name] ?? null
 }
 
-// ─── CONFIG ───────────────────────────────────────────────────────────────────
+// ─── Constants ──────────────────────────────────────────────
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyUcGXqQ2gbEfQmkA5Uyt9SqmRIcjoO5TV-BaHIJbsAQwWsbzS7CiEgor3ex_C7NUVk/exec'
 
-// ─── DATA ─────────────────────────────────────────────────────────────────────
 const STATS = [
   { num: '5',   label: 'Days of Immersion' },
   { num: '40+', label: 'Young Participants' },
@@ -50,153 +48,120 @@ const STATS = [
 ]
 
 const FEATURES = [
-  { icon: Bot,          label: 'AI & Data Literacy Workshops' },
-  { icon: Trophy,       label: 'Social Good Challenge (Hackathon)' },
-  { icon: Leaf,         label: 'Agriculture & Health AI' },
-  { icon: GraduationCap,label: 'Mentorship & Coaching' },
-  { icon: Rocket,       label: 'Open-Source Digital Toolkit' },
-  { icon: Handshake,    label: 'Reciprocal US–Cameroon Exchange' },
+  { label: 'AI & Data Literacy Workshops', img: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=40&h=40&fit=crop&q=60' },
+  { label: 'Social Good Challenge (Hackathon)', img: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=40&h=40&fit=crop&q=60' },
+  { label: 'Agriculture & Health AI', img: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=40&h=40&fit=crop&q=60' },
+  { label: 'Mentorship & Coaching', img: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=40&h=40&fit=crop&q=60' },
+  { label: 'Open-Source Digital Toolkit', img: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=40&h=40&fit=crop&q=60' },
+  { label: 'Reciprocal US–Cameroon Exchange', img: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=40&h=40&fit=crop&q=60' },
 ]
 
 const TESTIMONIALS = [
-  {
-    quote: "This program is a unique opportunity for young Cameroonians to develop concrete AI solutions that address the real challenges of our country.",
-    name: 'Prof. Aimé Takoukam',
-    role: 'ENSPD – École Nationale Supérieure Polytechnique de Douala',
-    initials: 'AT',
-  },
-  {
-    quote: "Georgia State University is proud of this partnership. We believe that youth-driven innovation can transform healthcare and education systems across Africa.",
-    name: 'Dr. Sarah Mitchell',
-    role: 'Innovation Center, Georgia State University',
-    initials: 'SM',
-  },
-  {
-    quote: "The reciprocal exchanges between our institutions embody the educational diplomacy mission of the Embassy. We fully support this initiative.",
-    name: 'James Whitfield',
-    role: 'U.S. Embassy Cameroon',
-    initials: 'JW',
-  },
-  {
-    quote: "Georgia Tech is excited to collaborate on AI for social good in Africa. The potential of these young innovators is immense and inspiring.",
-    name: 'Prof. Ana Rodrigues',
-    role: 'Georgia Institute of Technology',
-    initials: 'AR',
-  },
+  { quote: "This program is a unique opportunity for young Cameroonians to develop concrete AI solutions that address the real challenges of our country.", name: 'Prof. Aimé Takoukam', role: 'ENSPD – École Nationale Supérieure Polytechnique de Douala', initials: 'AT' },
+  { quote: "Georgia State University is proud of this partnership. We believe that youth-driven innovation can transform healthcare and education systems across Africa.", name: 'Dr. Sarah Mitchell', role: 'Innovation Center, Georgia State University', initials: 'SM' },
+  { quote: "The reciprocal exchanges between our institutions embody the educational diplomacy mission of the Embassy. We fully support this initiative.", name: 'James Whitfield', role: 'U.S. Embassy Cameroon', initials: 'JW' },
+  { quote: "Georgia Tech is excited to collaborate on AI for social good in Africa. The potential of these young innovators is immense and inspiring.", name: 'Prof. Ana Rodrigues', role: 'Georgia Institute of Technology', initials: 'AR' },
 ]
 
 const SERVICES = [
-  {
-    icon: Cpu,
-    title: 'AI & Data Literacy Workshops',
-    body: 'Interactive training sessions led by experts from Georgia State and Georgia Tech. Covers Python, PyTorch, TFLite and AI applications adapted to the African low-resource context.',
-  },
-  {
-    icon: Zap,
-    title: 'AI for Social Good Challenge',
-    body: '3-day hackathon where teams develop functional AI prototypes for health, agriculture and education. Awards presented at the final public Showcase.',
-  },
-  {
-    icon: BookOpen,
-    title: 'Mentorship & Entrepreneurship Coaching',
-    body: 'Mentoring sessions with American and Cameroonian professionals. Focus on the prototype-to-product trajectory and open-source code repositories on GitHub.',
-  },
-]
-
-const DOMAINS = [
-  'Cameroonian Agriculture', 'Rural Health', 'Bilingual Education', 'Cybersecurity',
-  'Telemedicine', 'AgriTech', 'EdTech', 'Disease Detection', 'Local Weather Forecasting',
-  'Mobile Fintech', 'Bassa/Bamiléké Language AI', 'IoT Clean Water', 'Cocoa Supply Chain',
-  'Dermatological Diagnosis', 'Maize Yield Prediction',
+  { icon: Cpu,      title: 'AI & Data Literacy Workshops',         body: 'Interactive training sessions led by experts from Georgia State and Georgia Tech. Covers Python, PyTorch, TFLite and AI applications adapted to the African low-resource context.' },
+  { icon: Zap,      title: 'AI for Social Good Challenge',          body: '3-day hackathon where teams develop functional AI prototypes for health, agriculture and education. Awards presented at the final public Showcase.' },
+  { icon: BookOpen, title: 'Mentorship & Entrepreneurship Coaching', body: 'Mentoring sessions with American and Cameroonian professionals. Focus on the prototype-to-product trajectory and open-source code repositories on GitHub.' },
 ]
 
 const EVENTS = [
-  {
-    tag: 'Workshop',
-    date: 'April 6, 2026',
-    title: 'AI & Data Literacy Workshop',
-    desc: 'Building with Python and TensorFlow in an African Context',
-    icon: Cpu,
-  },
-  {
-    tag: 'Hackathon',
-    date: 'April 8–10, 2026',
-    title: 'AI for Social Good Challenge',
-    desc: '48 hours to prototype a high-impact AI solution for Cameroon',
-    icon: Zap,
-  },
-  {
-    tag: 'Showcase',
-    date: 'April 11, 2026',
-    title: 'Public Showcase',
-    desc: 'Teams present prototypes to US & Cameroonian judges and partners',
-    icon: Trophy,
-  },
+  { tag: 'Workshop',  date: 'April 6, 2026',    title: 'AI & Data Literacy Workshop',    desc: 'Building with Python and TensorFlow in an African Context',         img: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&q=80&fit=crop' },
+  { tag: 'Hackathon', date: 'April 8–10, 2026', title: 'AI for Social Good Challenge',   desc: '48 hours to prototype a high-impact AI solution for Cameroon',       img: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&q=80&fit=crop' },
+  { tag: 'Showcase',  date: 'April 10, 2026',   title: 'Public Showcase',                desc: 'Teams present prototypes to US & Cameroonian judges and partners',   img: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=600&q=80&fit=crop' },
 ]
 
 const PARTNERS = [
-  { name: 'ENSPD Douala',           abbr: 'ENSPD',    url: 'https://www.enspd.univ-douala.com', logo: '/polytech_douala.png' },
-  { name: 'University of Douala',   abbr: 'UNIV-DLA', url: 'https://www.univ-douala.com',       logo: '/universite_de_douala.png' },
-  { name: 'U.S. Embassy Cameroon',  abbr: 'US EMB',   url: 'https://cm.usembassy.gov',          logo: '/us_embassy_logo.png' },
-  { name: 'Georgia State University',abbr: 'GSU',     url: 'https://www.gsu.edu',               logo: '/georgia_state_university.png' },
-  { name: 'Georgia Tech',           abbr: 'GT',       url: 'https://www.gatech.edu',            logo: '/georgia_tech.png' },
+  { name: 'ENSPD Douala',            abbr: 'ENSPD',    url: 'https://www.enspd.univ-douala.com', logo: '/polytech_douala.png' },
+  { name: 'University of Douala',    abbr: 'UNIV-DLA', url: 'https://www.univ-douala.com',       logo: '/universite_de_douala.png' },
+  { name: 'U.S. Embassy Cameroon',   abbr: 'US EMB',   url: 'https://cm.usembassy.gov',          logo: '/us_embassy_logo.png' },
+  { name: 'Georgia State University',abbr: 'GSU',      url: 'https://www.gsu.edu',               logo: '/georgia_state_university.png' },
+  { name: 'Georgia Tech',            abbr: 'GT',       url: 'https://www.gatech.edu',            logo: '/georgia_tech.png' },
 ]
 
-// ─── FORM CONFIG ──────────────────────────────────────────────────────────────
-const DOMAIN_OPTIONS = [
-  'Cameroonian Agriculture / AgriTech',
-  'Rural Health & Telemedicine',
-  'Bilingual Education & EdTech',
-  'Cybersecurity (low-resource context)',
-  'Mobile Fintech & Financial Inclusion',
-  'Local Language AI (Bassa, Bamiléké, etc.)',
-  'IoT & Clean Water',
-  'Other (describe below)',
+// ── Day Program Data ──
+const DAY_PROGRAM = [
+  {
+    num: '01', shortDate: 'Lun 06/04', fullDate: 'Monday, April 6, 2026',
+    theme: 'Foundations + Team Formation', focus: 'Awareness & Direction',
+    outcome: 'Teams formed + problem selected',
+    img: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1400&q=80&auto=format&fit=crop',
+    sessions: [
+      { slot: 'Morning',   time: '9:00 – 12:00', items: ['Welcome & Program Overview', 'Introduction to AI (real-world examples in Africa)', 'Discussion: Local challenges (health, agriculture, education)'] },
+      { slot: 'Afternoon', time: '13:00 – 15:00', items: ['Problem Identification Activity', 'Team Formation (8–10 teams)', 'Initial Idea Sharing'] },
+    ],
+  },
+  {
+    num: '02', shortDate: 'Mar 07/04', fullDate: 'Tuesday, April 7, 2026',
+    theme: 'AI Tools + Hands-On Learning', focus: 'Exposure & Application',
+    outcome: 'Teams begin applying AI to their ideas',
+    img: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1400&q=80&auto=format&fit=crop',
+    sessions: [
+      { slot: 'Morning',   time: '9:00 – 12:00', items: ['Introduction to AI tools (no-code + technical)', 'Demonstrations: simple models & real examples'] },
+      { slot: 'Afternoon', time: '13:00 – 17:00', items: ['Team Work Session', 'Mentorship rotation (feedback from facilitators)', 'Progress check-ins'] },
+    ],
+  },
+  {
+    num: '03', shortDate: 'Mer 08/04', fullDate: 'Wednesday, April 8, 2026',
+    theme: 'Challenge Development', focus: 'Build & Structure',
+    outcome: 'Clear solution + structure defined',
+    img: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1400&q=80&auto=format&fit=crop',
+    sessions: [
+      { slot: 'Morning',   time: '9:00 – 12:00', items: ['Introduction to AI for Social Good Challenge', 'Problem → Solution framework', 'How to design impactful solutions'] },
+      { slot: 'Afternoon', time: '13:00 – 17:00', items: ['Team Development Session', 'Mentor feedback', 'Early pitch practice'] },
+    ],
+  },
+  {
+    num: '04', shortDate: 'Jeu 09/04', fullDate: 'Thursday, April 9, 2026',
+    theme: 'Pitch + Refinement', focus: 'Communication & Confidence',
+    outcome: 'Pitch-ready teams',
+    img: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=1400&q=80&auto=format&fit=crop',
+    sessions: [
+      { slot: 'Morning',   time: '9:00 – 12:00', items: ['Pitch training: storytelling + structure', 'What judges look for'] },
+      { slot: 'Afternoon', time: '13:00 – 17:00', items: ['Mock pitch sessions', 'Final refinements', 'Coaching'] },
+    ],
+  },
+  {
+    num: '05', shortDate: 'Ven 10/04', fullDate: 'Friday, April 10, 2026',
+    theme: 'Showcase + Toolkit Launch', focus: 'Presentation & Legacy',
+    outcome: 'Final presentations + program close',
+    img: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1400&q=80&auto=format&fit=crop',
+    sessions: [
+      { slot: 'Morning',   time: '9:00 – 12:00', items: ['Final pitch competition (teams present)', 'Judges evaluate'] },
+      { slot: 'Midday',    time: '12:00 – 13:30', items: ['Awards + recognition ceremony'] },
+      { slot: 'Afternoon', time: '13:30 – 17:00', items: ['Digital toolkit introduction', 'Next steps & continued learning', 'Program close'] },
+    ],
+  },
 ]
-const STACK_OPTIONS = [
-  'Python / PyTorch / TensorFlow',
-  'C / C++ / Embedded Systems',
-  'JavaScript / React / Node.js',
-  'Git / GitHub',
-  'Streamlit / Flask (demos & APIs)',
-  'Mobile Development (Android / Flutter)',
-  'Federated Learning / Edge AI',
-  'Data Analysis (Pandas, SQL)',
+
+// ── Domains Data ──
+const DOMAINS_CAROUSEL = [
+  { tag: 'Agriculture', title: 'Cameroonian Agriculture & AgriTech', desc: 'AI-powered tools for smallholder farmers — crop disease detection, yield prediction and precision agriculture adapted to the African low-resource context.', img: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=1400&q=80&auto=format&fit=crop' },
+  { tag: 'Health',      title: 'Rural Health & Telemedicine',        desc: 'Bridging the health gap with AI diagnostics, disease detection and remote patient monitoring that work on low-end devices with no internet.',             img: 'https://images.unsplash.com/photo-1576671081837-49000212a370?w=1400&q=80&auto=format&fit=crop' },
+  { tag: 'Education',   title: 'Bilingual Education & EdTech',        desc: 'Adaptive learning platforms supporting both French and English, designed for Cameroon\'s unique bilingual educational context.',                          img: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=80&auto=format&fit=crop' },
+  { tag: 'Fintech',     title: 'Mobile Fintech & Financial Inclusion', desc: 'AI-driven mobile money platforms, credit scoring and fraud detection tailored to the realities of Cameroon\'s informal economy.',                         img: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=1400&q=80&auto=format&fit=crop' },
+  { tag: 'Language AI', title: 'Local Language AI — Bassa, Bamiléké', desc: 'NLP models, speech recognition and translation tools preserving and empowering Cameroonian languages for education and governance.',                        img: 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=1400&q=80&auto=format&fit=crop' },
+  { tag: 'Clean Water', title: 'IoT & Clean Water Access',            desc: 'Smart sensor networks and AI analytics to monitor water quality, predict shortages and optimize distribution across rural Cameroon.',                       img: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1400&q=80&auto=format&fit=crop' },
 ]
-const ROLE_OPTIONS = [
-  'ML Engineer / AI Developer',
-  'Prototype Developer (Frontend/Backend)',
-  'Field Tester & User Researcher (Cameroon)',
-  'Project Manager / Team Lead',
-  'Data Collector & Annotator',
-  'Business / Impact Analyst',
-]
-const STEP_LABELS = ['Profile', 'Participation', 'Technical Skills', 'Project Idea']
+
+const DOMAIN_OPTIONS = ['Cameroonian Agriculture / AgriTech','Rural Health & Telemedicine','Bilingual Education & EdTech','Cybersecurity (low-resource context)','Mobile Fintech & Financial Inclusion','Local Language AI (Bassa, Bamiléké, etc.)','IoT & Clean Water','Other (describe below)']
+const STACK_OPTIONS   = ['Python / PyTorch / TensorFlow','C / C++ / Embedded Systems','JavaScript / React / Node.js','Git / GitHub','Streamlit / Flask (demos & APIs)','Mobile Development (Android / Flutter)','Federated Learning / Edge AI','Data Analysis (Pandas, SQL)']
+const ROLE_OPTIONS    = ['ML Engineer / AI Developer','Prototype Developer (Frontend/Backend)','Field Tester & User Researcher (Cameroon)','Project Manager / Team Lead','Data Collector & Annotator','Business / Impact Analyst']
+const STEP_LABELS     = ['Profile', 'Participation', 'Technical Skills', 'Project Idea']
 
 const INIT = {
-  // Step 1 — Profile
-  fullName: '', email: '', phone: '', level: '', major: '', university: '',
-  // Step 2 — Participation mode
-  participationMode: '',     // 'solo' | 'team'
-  teamName: '',
-  teamSize: '',
-  teamMembersDescription: '',
-  teamLeader: '',            // 'yes' | 'no' (si équipe existante)
-  lookingForTeammates: '',   // 'yes' | 'no' (si solo ou équipe en formation)
-  // Step 3 — Technical skills
-  programmingLevel: 0,
-  stack: [],
-  projects: '',
-  // Step 4 — Project idea
-  domains: [],
-  otherDomain: '',
-  prototypeIdea: '',
-  cameroonImpact: '',
-  roles: [],
-  motivation: '',
+  fullName:'', email:'', phone:'', level:'', major:'', university:'',
+  participationMode:'', teamName:'', teamSize:'', teamMembersDescription:'',
+  teamLeader:'', lookingForTeammates:'', programmingLevel:0,
+  stack:[], projects:'', domains:[], otherDomain:'', prototypeIdea:'',
+  cameroonImpact:'', roles:[], motivation:'',
 }
 
-// ─── HOOKS ────────────────────────────────────────────────────────────────────
+// ─── Reveal hook ─────────────────────────────────────────────
 function useReveal(threshold = 0.1) {
   const ref = useRef(null)
   const [visible, setVisible] = useState(false)
@@ -212,68 +177,62 @@ function useReveal(threshold = 0.1) {
   return [ref, visible]
 }
 
-// ─── TOP BAR ──────────────────────────────────────────────────────────────────
+// ─── TopBar ──────────────────────────────────────────────────
 function TopBar() {
   return (
     <div className="topbar">
       <div className="topbar-inner">
         <span>
-          <Calendar size={12} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 5 }} />
-          April 6–11, 2026 &nbsp;·&nbsp; University of Douala, Cameroon
+          <Calendar size={12} style={{ display:'inline', verticalAlign:'middle', marginRight:5 }} />
+          April 6–10, 2026 &nbsp;·&nbsp; University of Douala, Cameroon
         </span>
         <a href="#register" className="topbar-cta">
-          Apply Now <ArrowRight size={11} style={{ display: 'inline', verticalAlign: 'middle', marginLeft: 3 }} />
+          Apply Now <ArrowRight size={11} style={{ display:'inline', verticalAlign:'middle', marginLeft:3 }} />
         </a>
       </div>
     </div>
   )
 }
 
-// ─── HEADER ───────────────────────────────────────────────────────────────────
+// ─── Header ──────────────────────────────────────────────────
 function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 30)
     window.addEventListener('scroll', fn)
     return () => window.removeEventListener('scroll', fn)
   }, [])
-
   return (
     <header className={`site-header ${scrolled ? 'scrolled' : ''}`}>
       <div className="header-inner">
         <a href="#home" className="site-logo">
           <div className="logo-icon">
             <img src="/logosdia.png" alt="AI for Social Good logo" className="logo-img"
-              onError={e => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex' }} />
-            <span className="logo-icon-fallback" style={{ display: 'none' }}>
-              <Bot size={20} color="#fff" strokeWidth={2.2} />
-            </span>
+              onError={e => { e.target.style.display='none' }} />
           </div>
           <div className="logo-text">
             <strong>AI for Social Good</strong>
             <span>Youth Exchange · Cameroon 2026</span>
           </div>
         </a>
-
         <nav className="site-nav">
           <a href="#about">About</a>
           <a href="#programme">Program</a>
+          <a href="#day-program">Schedule</a>
           <a href="#domaines">Domains</a>
           <a href="#partenaires">Partners</a>
           <a href="#register" className="nav-btn">Apply Now</a>
         </nav>
-
         <button className="hamburger" onClick={() => setMenuOpen(o => !o)} aria-label="Menu">
           {menuOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
-
       {menuOpen && (
         <nav className="mobile-menu" onClick={() => setMenuOpen(false)}>
           <a href="#about">About</a>
           <a href="#programme">Program</a>
+          <a href="#day-program">Schedule</a>
           <a href="#domaines">Domains</a>
           <a href="#partenaires">Partners</a>
           <a href="#register" className="mobile-menu-btn">Apply Now</a>
@@ -283,11 +242,10 @@ function Header() {
   )
 }
 
-// ─── HERO ─────────────────────────────────────────────────────────────────────
+// ─── Hero ─────────────────────────────────────────────────────
 function Hero() {
   return (
     <section className="hero" id="home">
-      <div className="hero-overlay" />
       <div className="hero-inner">
         <div className="hero-content">
           <p className="hero-eyebrow">Reciprocal Exchange Award · ENSPD × GSU × Georgia Tech</p>
@@ -304,9 +262,9 @@ function Hero() {
             <a href="#about" className="btn-outline">Explore the Program</a>
           </div>
           <div className="hero-meta">
-            <span><Calendar size={13} style={{ verticalAlign: 'middle', marginRight: 5 }} />April 6–11, 2026</span>
-            <span><MapPin size={13} style={{ verticalAlign: 'middle', marginRight: 5 }} />University of Douala</span>
-            <span><Users size={13} style={{ verticalAlign: 'middle', marginRight: 5 }} />30–40 Young Innovators</span>
+            <span><Calendar size={13} style={{ verticalAlign:'middle', marginRight:5 }} />April 6–10, 2026</span>
+            <span><MapPin size={13} style={{ verticalAlign:'middle', marginRight:5 }} />University of Douala</span>
+            <span><Users size={13} style={{ verticalAlign:'middle', marginRight:5 }} />30–40 Young Innovators</span>
           </div>
         </div>
       </div>
@@ -318,7 +276,7 @@ function Hero() {
   )
 }
 
-// ─── PARTNERS BAR ─────────────────────────────────────────────────────────────
+// ─── Partners Bar ────────────────────────────────────────────
 function PartnersBar() {
   const [ref, visible] = useReveal()
   return (
@@ -326,12 +284,12 @@ function PartnersBar() {
       <div className="partners-inner">
         <p className="partners-label">In Partnership With</p>
         <div className="partners-row">
-          {PARTNERS.map((p) => (
+          {PARTNERS.map(p => (
             <a key={p.name} href={p.url} target="_blank" rel="noopener noreferrer"
-              className="partner-logo-link" title={p.name}>
+               className="partner-logo-link" title={p.name}>
               <img src={p.logo} alt={p.name} className="partner-logo-img"
-                onError={e => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex' }} />
-              <span className="partner-logo-fallback" style={{ display: 'none' }}>{p.abbr}</span>
+                onError={e => { e.target.style.display='none'; e.target.nextSibling.style.display='flex' }} />
+              <span className="partner-logo-fallback" style={{ display:'none' }}>{p.abbr}</span>
             </a>
           ))}
         </div>
@@ -340,8 +298,8 @@ function PartnersBar() {
   )
 }
 
-// ─── ANIMATED COUNTER ─────────────────────────────────────────────────────────
-function AnimatedNumber({ target, suffix = '', duration = 1400, started }) {
+// ─── Animated number ─────────────────────────────────────────
+function AnimatedNumber({ target, suffix='', duration=1400, started }) {
   const [display, setDisplay] = useState(0)
   const rafRef = useRef(null)
   useEffect(() => {
@@ -360,15 +318,15 @@ function AnimatedNumber({ target, suffix = '', duration = 1400, started }) {
   return <>{display}{suffix}</>
 }
 
-// ─── COUNTDOWN ────────────────────────────────────────────────────────────────
+// ─── Countdown ───────────────────────────────────────────────
 function Countdown() {
   const EVENT_DATE = new Date('2026-04-06T08:00:00')
   const calc = () => {
     const diff = EVENT_DATE - new Date()
     if (diff <= 0) return null
     return {
-      days: Math.floor(diff / 86400000),
-      hours: Math.floor((diff % 86400000) / 3600000),
+      days:    Math.floor(diff / 86400000),
+      hours:   Math.floor((diff % 86400000) / 3600000),
       minutes: Math.floor((diff % 3600000) / 60000),
       seconds: Math.floor((diff % 60000) / 1000),
     }
@@ -382,12 +340,12 @@ function Countdown() {
       <div className="countdown-inner"><p className="countdown-label">The event has begun — follow live!</p></div>
     </div>
   )
-
   const units = [
-    { val: time.days, label: 'Days' }, { val: time.hours, label: 'Hours' },
-    { val: time.minutes, label: 'Min' }, { val: time.seconds, label: 'Sec' },
+    { val: time.days,    label: 'Days' },
+    { val: time.hours,   label: 'Hours' },
+    { val: time.minutes, label: 'Min' },
+    { val: time.seconds, label: 'Sec' },
   ]
-
   return (
     <div className={`countdown-section fade-up ${visible ? 'visible' : ''}`} ref={ref}>
       <div className="countdown-inner">
@@ -405,7 +363,7 @@ function Countdown() {
   )
 }
 
-// ─── STATS ────────────────────────────────────────────────────────────────────
+// ─── Stats ───────────────────────────────────────────────────
 function StatsSection() {
   const [ref, visible] = useReveal()
   return (
@@ -422,7 +380,7 @@ function StatsSection() {
             const suffix = match ? match[2] : ''
             return (
               <div key={s.label} className={`stat-card fade-up ${visible ? 'visible' : ''}`}
-                style={{ transitionDelay: `${i * 0.1}s` }}>
+                   style={{ transitionDelay: `${i * 0.1}s` }}>
                 <div className="stat-num">
                   <AnimatedNumber target={numVal} suffix={suffix} started={visible} duration={1200 + i * 200} />
                 </div>
@@ -436,7 +394,7 @@ function StatsSection() {
   )
 }
 
-// ─── ABOUT ────────────────────────────────────────────────────────────────────
+// ─── About ───────────────────────────────────────────────────
 function AboutSection() {
   const [ref, visible] = useReveal()
   return (
@@ -456,11 +414,10 @@ function AboutSection() {
             digital toolkit will be launched to sustain impact in universities across Cameroon.
           </p>
           <a href="#register" className="text-link">
-            Apply to the program <ArrowRight size={14} style={{ display: 'inline', verticalAlign: 'middle', marginLeft: 4 }} />
+            Apply to the program <ArrowRight size={14} style={{ display:'inline', verticalAlign:'middle', marginLeft:4 }} />
           </a>
         </div>
-
-        <div className={`about-right fade-up ${visible ? 'visible' : ''}`} id="programme" style={{ transitionDelay: '0.15s' }}>
+        <div className={`about-right fade-up ${visible ? 'visible' : ''}`} id="programme" style={{ transitionDelay:'0.15s' }}>
           {SERVICES.map((s, i) => (
             <div className="service-card" key={s.title}>
               <div className="service-num">0{i + 1}</div>
@@ -476,7 +433,7 @@ function AboutSection() {
   )
 }
 
-// ─── FEATURES STRIP ───────────────────────────────────────────────────────────
+// ─── Features Strip ──────────────────────────────────────────
 function FeaturesStrip() {
   const [ref, visible] = useReveal()
   return (
@@ -484,8 +441,8 @@ function FeaturesStrip() {
       <div className="features-inner">
         {FEATURES.map((f, i) => (
           <div key={f.label} className={`feature-item fade-up ${visible ? 'visible' : ''}`}
-            style={{ transitionDelay: `${i * 0.07}s` }}>
-            <f.icon size={20} strokeWidth={1.8} />
+               style={{ transitionDelay:`${i * 0.07}s` }}>
+            <img src={f.img} alt="" style={{ width:20, height:20, borderRadius:'50%', objectFit:'cover', flexShrink:0, opacity:0.7 }} />
             <span>{f.label}</span>
           </div>
         ))}
@@ -494,7 +451,7 @@ function FeaturesStrip() {
   )
 }
 
-// ─── TESTIMONIALS ──────────────────────────────────────────────────────────────
+// ─── Testimonials ────────────────────────────────────────────
 function Testimonials() {
   const [active, setActive] = useState(0)
   const [ref, visible] = useReveal()
@@ -503,7 +460,6 @@ function Testimonials() {
     return () => clearInterval(t)
   }, [])
   const t = TESTIMONIALS[active]
-
   return (
     <section className={`testimonials-section fade-up ${visible ? 'visible' : ''}`} ref={ref}>
       <div className="testimonials-inner">
@@ -516,12 +472,8 @@ function Testimonials() {
             ))}
           </div>
           <div className="testimonial-arrows">
-            <button onClick={() => setActive(a => (a - 1 + TESTIMONIALS.length) % TESTIMONIALS.length)}>
-              <ChevronLeft size={18} />
-            </button>
-            <button onClick={() => setActive(a => (a + 1) % TESTIMONIALS.length)}>
-              <ChevronRight size={18} />
-            </button>
+            <button onClick={() => setActive(a => (a - 1 + TESTIMONIALS.length) % TESTIMONIALS.length)}><ChevronLeft size={18} /></button>
+            <button onClick={() => setActive(a => (a + 1) % TESTIMONIALS.length)}><ChevronRight size={18} /></button>
           </div>
         </div>
         <div className="testimonials-right">
@@ -542,33 +494,463 @@ function Testimonials() {
   )
 }
 
-// ─── DOMAINS ───────────────────────────────────────────────────────────────────
-function DomainsSection() {
-  const [ref, visible] = useReveal()
+// ─── DIAL WHEEL SVG ─────────────────────────────────────────
+function DialWheel({ rotation = 0, activeDay = 0 }) {
+  const cx = 500, cy = 500
+  const total = DAY_PROGRAM.length
+
   return (
-    <section className="domains-section" id="domaines" ref={ref}>
+    <svg viewBox="0 0 1000 1000" style={{ width:'100%', height:'100%', overflow:'visible' }}>
+      <defs>
+        <radialGradient id="dialGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#1a5fd4" stopOpacity="0.07" />
+          <stop offset="60%" stopColor="#1a5fd4" stopOpacity="0.02" />
+          <stop offset="100%" stopColor="#1a5fd4" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+
+      <circle cx={cx} cy={cy} r={490} fill="url(#dialGlow)" />
+
+      {/* Concentric rings */}
+      {[490, 480, 460, 400, 340, 260, 180].map((r, i) => (
+        <circle key={r} cx={cx} cy={cy} r={r} fill="none"
+          stroke="rgba(255,255,255,0.06)"
+          strokeWidth={i === 1 ? 1 : 0.5}
+          strokeDasharray={i === 3 ? '4 8' : i === 5 ? '2 6' : undefined}
+        />
+      ))}
+
+      {/* Rotating tick ring */}
+      <g style={{ transformOrigin:'500px 500px', transform:`rotate(${rotation}deg)`, transition:'transform 0.06s linear' }}>
+        {Array.from({ length: 72 }).map((_, i) => {
+          const angle = (i / 72) * 2 * Math.PI
+          const major = i % 6 === 0
+          const r1 = major ? 468 : 476
+          const x1 = cx + r1 * Math.cos(angle), y1 = cy + r1 * Math.sin(angle)
+          const x2 = cx + 490 * Math.cos(angle), y2 = cy + 490 * Math.sin(angle)
+          return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2}
+            stroke={major ? 'rgba(255,255,255,0.18)' : 'rgba(255,255,255,0.06)'}
+            strokeWidth={major ? 1.5 : 0.4} />
+        })}
+
+        {/* Day labels on ring */}
+        {DAY_PROGRAM.map((d, i) => {
+          const angle = (i / total) * 2 * Math.PI - Math.PI / 2
+          const r = 430
+          const x = cx + r * Math.cos(angle)
+          const y = cy + r * Math.sin(angle)
+          const deg = (angle * 180 / Math.PI) + 90
+          return (
+            <text key={i} x={x} y={y} textAnchor="middle" dominantBaseline="central"
+              fill="rgba(255,255,255,0.1)" fontSize="8" fontFamily="monospace"
+              fontWeight="600" letterSpacing="0.12em"
+              transform={`rotate(${deg} ${x} ${y})`}
+            >
+              JOUR {d.num}
+            </text>
+          )
+        })}
+      </g>
+
+      {/* Day dots at fixed positions */}
+      {DAY_PROGRAM.map((_, i) => {
+        const angle = (i / total) * 2 * Math.PI - Math.PI / 2
+        const r = 380
+        const x = cx + r * Math.cos(angle)
+        const y = cy + r * Math.sin(angle)
+        const isActive = i === activeDay
+        return (
+          <g key={i}>
+            {isActive && <>
+              <circle cx={x} cy={y} r={20} fill="none" stroke="rgba(26,95,212,0.25)" strokeWidth={1} />
+              <circle cx={x} cy={y} r={13} fill="none" stroke="rgba(26,95,212,0.45)" strokeWidth={1} />
+            </>}
+            <line x1={cx} y1={cy} x2={x} y2={y}
+              stroke={isActive ? 'rgba(26,95,212,0.5)' : 'rgba(255,255,255,0.03)'}
+              strokeWidth={isActive ? 1 : 0.3}
+              strokeDasharray={isActive ? 'none' : '3 6'}
+              style={{ transition:'all 0.5s ease' }}
+            />
+            <circle cx={x} cy={y} r={isActive ? 7 : 3}
+              fill={isActive ? '#1a5fd4' : 'rgba(255,255,255,0.18)'}
+              style={{ transition:'all 0.4s ease' }}
+            />
+          </g>
+        )
+      })}
+
+      {/* Active needle */}
+      {(() => {
+        const angle = (activeDay / total) * 2 * Math.PI - Math.PI / 2
+        const ex = cx + 490 * Math.cos(angle)
+        const ey = cy + 490 * Math.sin(angle)
+        return <line x1={cx} y1={cy} x2={ex} y2={ey}
+          stroke="rgba(26,95,212,0.5)" strokeWidth={1}
+          style={{ transition:'all 0.5s ease' }} />
+      })()}
+
+      {/* Center */}
+      <circle cx={cx} cy={cy} r={8} fill="none" stroke="rgba(255,255,255,0.07)" strokeWidth={0.4} />
+      <circle cx={cx} cy={cy} r={3} fill="rgba(255,255,255,0.12)" />
+      <circle cx={cx} cy={cy} r={1} fill="rgba(26,95,212,0.6)" />
+    </svg>
+  )
+}
+
+// ─── Day Program Section — remplace l'ancienne dans App.jsx ──────────────────
+// Garde la roue (DialWheel) intacte.
+// Phase 1 (scroll 0) : grand titre cinématique sur la roue.
+// Phase 2 (scroll) : titre fade-out → contenu du jour en layout horizontal pleine largeur.
+
+function DayProgramSection() {
+  const sectionRef = useRef(null)
+  const [activeDay, setActiveDay] = useState(0)
+  const [dialRotation, setDialRotation] = useState(0)
+  const [scrollProgress, setScrollProgress] = useState(0)
+  // introProgress 0→1 : à quel point on a quitté l'écran d'intro (titre)
+  // => 0 = titre pleinement visible, 1 = titre sorti, contenu du jour visible
+  const [introProgress, setIntroProgress] = useState(0)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const el = sectionRef.current
+      if (!el) return
+      const rect = el.getBoundingClientRect()
+      const sectionH = el.offsetHeight - window.innerHeight
+      const scrolled = -rect.top
+      const progress = Math.max(0, Math.min(1, scrolled / sectionH))
+      setScrollProgress(progress)
+
+      // 1 "écran" supplémentaire pour l'intro → progress 0..1/6 = intro, 1/6..1 = jours
+      const totalSteps = DAY_PROGRAM.length + 1 // 1 intro + 5 jours
+      const introEnd = 1 / totalSteps
+      const ip = Math.min(1, progress / introEnd)   // 0→1 pendant la phase intro
+      setIntroProgress(ip)
+
+      const dayProgress = Math.max(0, (progress - introEnd) / (1 - introEnd))
+      setActiveDay(Math.min(DAY_PROGRAM.length - 1, Math.floor(dayProgress * DAY_PROGRAM.length)))
+      setDialRotation(progress * 360)
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const day = DAY_PROGRAM[activeDay]
+
+  // opacités pilotées par introProgress
+  const introOpacity  = Math.max(0, 1 - introProgress * 2.5)   // disparaît vite
+  const contentOpacity = Math.max(0, (introProgress - 0.4) / 0.6) // apparaît après
+
+  return (
+    <section
+      ref={sectionRef}
+      id="day-program"
+      style={{
+        height: `${(DAY_PROGRAM.length + 2) * 100}vh`, // +1 pour l'intro
+        position: 'relative',
+        background: 'var(--navy)',
+      }}
+    >
+      {/* Sticky viewport */}
+      <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' }}>
+
+        {/* Ambient gradient */}
+        <div style={{
+          position: 'absolute', inset: 0,
+          background: `radial-gradient(ellipse 70% 70% at 65% 50%, rgba(26,95,212,${0.05 + activeDay * 0.015}) 0%, transparent 65%)`,
+          transition: 'background 0.8s ease',
+        }} />
+
+        {/* Vignette */}
+        <div style={{
+          position: 'absolute', inset: 0, zIndex: 2, pointerEvents: 'none',
+          background: 'radial-gradient(ellipse 85% 85% at 50% 50%, transparent 25%, #0d2240 80%)',
+        }} />
+
+        {/* ── ROUE (toujours là, en fond à droite) ── */}
+        <div style={{
+          position: 'absolute',
+          top: '50%', right: '-12%',
+          transform: 'translateY(-50%)',
+          width: 'min(140vw, 1000px)',
+          height: 'min(140vw, 1000px)',
+          pointerEvents: 'none', zIndex: 1,
+        }}>
+          <DialWheel rotation={dialRotation} activeDay={activeDay} />
+        </div>
+
+        {/* ── PHASE 1 : TITRE CINÉMATIQUE ── */}
+        <div style={{
+          position: 'absolute', inset: 0, zIndex: 10,
+          display: 'flex', alignItems: 'center',
+          opacity: introOpacity,
+          transform: `translateY(${-introProgress * 40}px)`,
+          transition: 'none',
+          pointerEvents: introOpacity > 0.1 ? 'all' : 'none',
+        }}>
+          <div style={{
+            paddingLeft: 'clamp(24px, 5vw, 80px)',
+            paddingRight: '40px',
+            maxWidth: 620,
+          }}>
+            <p className="section-label" style={{ color: 'rgba(26,95,212,0.8)' }}>
+              Full Schedule
+            </p>
+            <h2 style={{
+              color: '#fff',
+              fontFamily: 'var(--serif)',
+              fontSize: 'clamp(2.4rem, 5vw, 3.8rem)',
+              fontWeight: 400,
+              lineHeight: 1.1,
+              marginTop: 8,
+              marginBottom: 24,
+            }}>
+              5 days,<br />
+              <em style={{ fontStyle: 'italic', color: 'rgba(255,255,255,0.55)' }}>
+                from foundation<br />to showcase.
+              </em>
+            </h2>
+            <p style={{
+              fontSize: '0.92rem',
+              color: 'rgba(255,255,255,0.45)',
+              lineHeight: 1.7,
+              maxWidth: 440,
+            }}>
+              Workshops, hackathon, mentorship, and a public presentation
+              of AI prototypes built for Cameroon.
+            </p>
+            <div style={{
+              marginTop: 36,
+              display: 'flex', alignItems: 'center', gap: 8,
+              color: 'rgba(255,255,255,0.3)',
+              fontSize: '0.72rem', letterSpacing: '0.1em', textTransform: 'uppercase',
+            }}>
+              <span>Scroll to explore</span>
+              <div style={{ height: 1, width: 40, background: 'rgba(255,255,255,0.2)' }} />
+            </div>
+          </div>
+        </div>
+
+        {/* ── PHASE 2 : CONTENU DU JOUR en layout HORIZONTAL ── */}
+        <div style={{
+          position: 'absolute', inset: 0, zIndex: 10,
+          opacity: contentOpacity,
+          transform: `translateY(${(1 - introProgress) * 30}px)`,
+          transition: 'none',
+          pointerEvents: contentOpacity > 0.1 ? 'all' : 'none',
+          display: 'flex', flexDirection: 'column', justifyContent: 'center',
+        }}>
+
+          {/* En-tête du jour — pleine largeur */}
+          <div key={`header-${activeDay}`} style={{
+            paddingLeft: 'clamp(24px, 5vw, 80px)',
+            paddingRight: '40%', // laisse de la place à la roue
+            marginBottom: 32,
+            animation: 'dayBlockIn 0.5s cubic-bezier(0.4,0,0.2,1)',
+          }}>
+            <span style={{
+              display: 'block',
+              fontFamily: 'monospace',
+              fontSize: '0.65rem', letterSpacing: '0.2em',
+              color: 'rgba(26,95,212,0.7)',
+              textTransform: 'uppercase', marginBottom: 10,
+            }}>
+              {day.num} / 0{DAY_PROGRAM.length}
+            </span>
+            <div style={{
+              display: 'inline-block',
+              fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.1em',
+              textTransform: 'uppercase', color: 'var(--blue-lt)',
+              background: 'rgba(26,95,212,0.12)', border: '1px solid rgba(26,95,212,0.3)',
+              borderRadius: 40, padding: '4px 14px', marginBottom: 12,
+            }}>
+              {day.fullDate}
+            </div>
+            <h3 style={{
+              fontFamily: 'var(--serif)',
+              fontSize: 'clamp(1.5rem, 3vw, 2.2rem)',
+              fontWeight: 400, color: '#fff', lineHeight: 1.2,
+              marginBottom: 4,
+            }}>
+              {day.theme}
+            </h3>
+            <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.4)' }}>
+              Focus : <em style={{ fontStyle: 'normal', color: 'rgba(255,255,255,0.6)', fontWeight: 600 }}>{day.focus}</em>
+            </p>
+          </div>
+
+          {/* ── Sessions en HORIZONTAL — pleine largeur, pas centrées ── */}
+          <div key={`sessions-${activeDay}`} style={{
+            display: 'flex',
+            alignItems: 'flex-start',
+            paddingLeft: 'clamp(24px, 5vw, 80px)',
+            gap: 0,
+            animation: 'dayBlockIn 0.55s cubic-bezier(0.4,0,0.2,1)',
+          }}>
+            {day.sessions.map((s, si) => (
+              <div key={si} style={{
+                flex: si === day.sessions.length - 1 ? '1 1 auto' : '0 0 auto',
+                minWidth: 200,
+                maxWidth: si === day.sessions.length - 1 ? '35%' : 280,
+                paddingRight: 40,
+                borderRight: si < day.sessions.length - 1
+                  ? '1px solid rgba(255,255,255,0.07)'
+                  : 'none',
+                paddingLeft: si > 0 ? 40 : 0,
+              }}>
+                {/* Slot label */}
+                <div style={{
+                  fontSize: '0.62rem', fontWeight: 700, letterSpacing: '0.12em',
+                  textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)',
+                  marginBottom: 4,
+                }}>
+                  {s.slot}
+                </div>
+                {/* Time */}
+                <div style={{
+                  fontSize: '0.7rem', color: 'var(--blue-lt)',
+                  fontWeight: 600, marginBottom: 16, opacity: 0.7,
+                  fontVariantNumeric: 'tabular-nums',
+                }}>
+                  {s.time}
+                </div>
+                {/* Items — texte brut, pas de card */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                  {s.items.map((item, ii) => (
+                    <div key={ii} style={{
+                      display: 'flex', alignItems: 'flex-start', gap: 10,
+                      fontSize: '0.83rem', color: 'rgba(255,255,255,0.65)',
+                      lineHeight: 1.5,
+                    }}>
+                      <span style={{
+                        width: 5, height: 5, borderRadius: '50%',
+                        background: 'var(--blue)', flexShrink: 0, marginTop: 5,
+                      }} />
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Progress dots */}
+          <div style={{
+            display: 'flex', gap: 8, alignItems: 'center',
+            paddingLeft: 'clamp(24px, 5vw, 80px)',
+            marginTop: 36,
+          }}>
+            {DAY_PROGRAM.map((_, i) => (
+              <div key={i} style={{
+                height: 4, borderRadius: 2,
+                width: i === activeDay ? 20 : 8,
+                background: i === activeDay
+                  ? 'var(--blue)'
+                  : i < activeDay
+                    ? 'rgba(26,95,212,0.4)'
+                    : 'rgba(255,255,255,0.15)',
+                transition: 'all 0.3s ease',
+              }} />
+            ))}
+          </div>
+        </div>
+
+        {/* Image fantôme du jour */}
+        <div style={{
+          position: 'absolute', bottom: 0, right: 0,
+          width: '42%', height: '52%',
+          zIndex: 3, pointerEvents: 'none', overflow: 'hidden',
+          maskImage: 'linear-gradient(to top left, rgba(0,0,0,0.3) 0%, transparent 65%)',
+          WebkitMaskImage: 'linear-gradient(to top left, rgba(0,0,0,0.3) 0%, transparent 65%)',
+        }}>
+          <img key={activeDay} src={day.img} alt={day.theme}
+            style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.12, animation: 'dayImgFade 0.7s ease' }} />
+        </div>
+
+        {/* Scroll bar latérale */}
+        <div style={{
+          position: 'absolute', right: 24, top: '20%', bottom: '20%',
+          width: 2, background: 'rgba(255,255,255,0.05)', borderRadius: 2, zIndex: 10,
+        }}>
+          <div style={{
+            background: 'var(--blue)', width: '100%', borderRadius: 2,
+            height: `${scrollProgress * 100}%`, transition: 'height 0.1s linear',
+          }} />
+        </div>
+
+      </div>
+    </section>
+  )
+}
+
+// ─── Domains Section (image carousel) ───────────────────────
+function DomainsSection() {
+  const [active, setActive] = useState(0)
+  const autoRef = useRef(null)
+  const [ref, visible] = useReveal()
+
+  const startAuto = () => { autoRef.current = setInterval(() => setActive(a => (a + 1) % DOMAINS_CAROUSEL.length), 5500) }
+  const stopAuto  = () => clearInterval(autoRef.current)
+  useEffect(() => { startAuto(); return stopAuto }, [])
+
+  const goTo = (i) => { stopAuto(); setActive(i); startAuto() }
+  const prev = () => goTo((active - 1 + DOMAINS_CAROUSEL.length) % DOMAINS_CAROUSEL.length)
+  const next = () => goTo((active + 1) % DOMAINS_CAROUSEL.length)
+
+  const d = DOMAINS_CAROUSEL[active]
+
+  return (
+    <section className={`domains-section fade-up ${visible ? 'visible' : ''}`} id="domaines" ref={ref}>
       <div className="domains-inner">
         <div className="domains-header">
           <p className="section-label">Priority Areas</p>
           <h2>Your Prototypes Target<br />Real Challenges</h2>
-          <p className="body-text" style={{ maxWidth: 480 }}>
-            Teams develop AI prototypes rooted in the concrete challenges facing Cameroon.
+          <p className="body-text" style={{ maxWidth:480 }}>
+            Teams develop AI prototypes rooted in the concrete challenges facing Cameroon — across health, agriculture, education and beyond.
           </p>
         </div>
-        <div className="domains-tags">
-          {DOMAINS.map((d, i) => (
-            <span key={d} className={`domain-tag fade-up ${visible ? 'visible' : ''}`}
-              style={{ transitionDelay: `${i * 0.035}s` }}>
-              {d}
-            </span>
-          ))}
+
+        {/* Carousel */}
+        <div className="domain-carousel" onMouseEnter={stopAuto} onMouseLeave={startAuto}>
+          <div className="domain-img-wrap">
+            <img key={active} src={d.img} alt={d.title} className="domain-img" />
+            <div className="domain-img-overlay" />
+          </div>
+          <div className="domain-carousel-content" key={active + '-content'}>
+            <span className="domain-carousel-tag">{d.tag}</span>
+            <h3 className="domain-carousel-title">{d.title}</h3>
+            <p className="domain-carousel-desc">{d.desc}</p>
+          </div>
+          <div className="domain-counter">
+            <span className="domain-counter-active">{String(active + 1).padStart(2,'0')}</span>
+            <span className="domain-counter-sep">/</span>
+            <span className="domain-counter-total">{String(DOMAINS_CAROUSEL.length).padStart(2,'0')}</span>
+          </div>
+        </div>
+
+        {/* Controls */}
+        <div className="domain-controls">
+          <div className="domain-pills">
+            {DOMAINS_CAROUSEL.map((dom, i) => (
+              <button key={i} className={`domain-pill ${i === active ? 'active' : ''}`} onClick={() => goTo(i)}>
+                {dom.tag}
+              </button>
+            ))}
+          </div>
+          <div className="domain-nav-row">
+            <div className="domain-progressbar">
+              <div className="domain-progressbar-fill" style={{ width:`${((active + 1) / DOMAINS_CAROUSEL.length) * 100}%` }} />
+            </div>
+            <button className="domain-arrow" onClick={prev}>&#8592;</button>
+            <button className="domain-arrow" onClick={next}>&#8594;</button>
+          </div>
         </div>
       </div>
     </section>
   )
 }
 
-// ─── EVENTS ────────────────────────────────────────────────────────────────────
+// ─── Events Section ──────────────────────────────────────────
 function EventsSection() {
   const [ref, visible] = useReveal()
   return (
@@ -577,23 +959,29 @@ function EventsSection() {
         <div className="events-header">
           <div>
             <p className="section-label light">Schedule</p>
-            <h2 style={{ color: '#fff' }}>Key Events</h2>
+            <h2 style={{ color:'#fff' }}>Key Events</h2>
           </div>
           <a href="#register" className="events-cta">
-            Register Now <ArrowRight size={13} style={{ display: 'inline', verticalAlign: 'middle', marginLeft: 4 }} />
+            Register Now <ArrowRight size={13} style={{ display:'inline', verticalAlign:'middle', marginLeft:4 }} />
           </a>
         </div>
         <div className="events-grid">
           {EVENTS.map((e, i) => (
             <div key={e.title} className={`event-card fade-up ${visible ? 'visible' : ''}`}
-              style={{ transitionDelay: `${i * 0.12}s` }}>
-              <div className="event-icon-wrap"><e.icon size={28} strokeWidth={1.5} /></div>
-              <div className="event-tag">{e.tag}</div>
-              <h3 className="event-title">{e.title}</h3>
-              <p className="event-desc">{e.desc}</p>
-              <div className="event-date">
-                <Calendar size={12} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 5 }} />
-                {e.date}
+                 style={{ transitionDelay:`${i * 0.12}s`, position:'relative', overflow:'hidden' }}>
+              {/* Subtle image bg */}
+              <img src={e.img} alt="" style={{
+                position:'absolute', inset:0, width:'100%', height:'100%',
+                objectFit:'cover', opacity:0.07, pointerEvents:'none',
+              }} />
+              <div style={{ position:'relative', zIndex:1 }}>
+                <div className="event-tag">{e.tag}</div>
+                <h3 className="event-title">{e.title}</h3>
+                <p className="event-desc">{e.desc}</p>
+                <div className="event-date">
+                  <Calendar size={12} style={{ display:'inline', verticalAlign:'middle', marginRight:5 }} />
+                  {e.date}
+                </div>
               </div>
             </div>
           ))}
@@ -603,90 +991,64 @@ function EventsSection() {
   )
 }
 
-// ═══════════════════════════════════════════════════════════════════════════════
-// ─── FORM STEPS (REDESIGNED) ──────────────────────────────────────────────────
-// ═══════════════════════════════════════════════════════════════════════════════
-
-// STEP 1 — Profile
+// ─── Register Steps ──────────────────────────────────────────
 function Step1({ form, set }) {
   return (
     <>
       <h3 className="step-title">Your Profile</h3>
       <p className="step-sub">Tell us about yourself and your academic background.</p>
-
       <div className="form-row">
         <div className="form-group">
           <label>Full Name *</label>
-          <input type="text" placeholder="e.g. Marie Nguetsa"
-            value={form.fullName} onChange={e => set('fullName', e.target.value)} />
+          <input type="text" placeholder="e.g. Marie Nguetsa" value={form.fullName} onChange={e => set('fullName', e.target.value)} />
         </div>
         <div className="form-group">
           <label>Email Address *</label>
-          <input type="email" placeholder="your.name@univ-douala.cm"
-            value={form.email} onChange={e => set('email', e.target.value)} />
+          <input type="email" placeholder="your.name@univ-douala.cm" value={form.email} onChange={e => set('email', e.target.value)} />
         </div>
       </div>
-
       <div className="form-row">
         <div className="form-group">
           <label>Phone / WhatsApp</label>
-          <input type="tel" placeholder="e.g. +237 6XX XXX XXX"
-            value={form.phone} onChange={e => set('phone', e.target.value)} />
+          <input type="tel" placeholder="e.g. +237 6XX XXX XXX" value={form.phone} onChange={e => set('phone', e.target.value)} />
         </div>
         <div className="form-group">
           <label>Level of Study *</label>
           <select value={form.level} onChange={e => set('level', e.target.value)}>
             <option value="">Select…</option>
-            <option>L3</option>
-            <option>M1</option>
-            <option>M2</option>
-            <option>PhD</option>
-            <option>Professional / Other</option>
+            <option>L3</option><option>M1</option><option>M2</option>
+            <option>PhD</option><option>Professional / Other</option>
           </select>
         </div>
       </div>
-
       <div className="form-row">
         <div className="form-group">
           <label>Field / Department *</label>
-          <input type="text" placeholder="e.g. Computer Engineering, Data Science"
-            value={form.major} onChange={e => set('major', e.target.value)} />
+          <input type="text" placeholder="e.g. Computer Engineering, Data Science" value={form.major} onChange={e => set('major', e.target.value)} />
         </div>
         <div className="form-group">
           <label>University / Institution *</label>
-          <input type="text" placeholder="e.g. ENSPD, University of Douala"
-            value={form.university} onChange={e => set('university', e.target.value)} />
+          <input type="text" placeholder="e.g. ENSPD, University of Douala" value={form.university} onChange={e => set('university', e.target.value)} />
         </div>
       </div>
     </>
   )
 }
 
-// STEP 2 — Participation Mode (NOUVEAU)
 function Step2({ form, set }) {
   return (
     <>
       <h3 className="step-title">Participation Mode</h3>
       <p className="step-sub">Are you applying solo or as part of a team? Both are welcome.</p>
-
-      {/* Mode selector */}
       <div className="form-group">
         <label>How are you participating? *</label>
         <div className="mode-selector">
-          <button
-            type="button"
-            className={`mode-card ${form.participationMode === 'solo' ? 'active' : ''}`}
-            onClick={() => set('participationMode', 'solo')}
-          >
+          <button type="button" className={`mode-card ${form.participationMode === 'solo' ? 'active' : ''}`} onClick={() => set('participationMode','solo')}>
             <UserPlus size={28} strokeWidth={1.5} />
             <strong>Solo</strong>
-            <span>I'm applying alone and open to joining or forming a team during the event</span>
+            <span>I'm applying alone and open to joining or forming a team</span>
           </button>
-          <button
-            type="button"
-            className={`mode-card ${form.participationMode === 'team' ? 'active' : ''}`}
-            onClick={() => set('participationMode', 'team')}
-          >
+          <button type="button" className={`mode-card ${form.participationMode === 'team' ? 'active' : ''}`} onClick={() => set('participationMode','team')}>
             <UsersRound size={28} strokeWidth={1.5} />
             <strong>As a Team</strong>
             <span>I'm applying with a pre-formed team (2–5 members)</span>
@@ -694,82 +1056,63 @@ function Step2({ form, set }) {
         </div>
       </div>
 
-      {/* Solo — open to teammates? */}
       {form.participationMode === 'solo' && (
         <div className="form-group">
-          <label>Are you open to being matched with other participants to form a team?</label>
+          <label>Are you open to being matched with other participants?</label>
           <div className="check-list">
-            {['Yes, I want to be matched with a team', 'No, I prefer to compete solo (individual track)'].map(s => (
+            {['Yes, I want to be matched with a team','No, I prefer to compete solo (individual track)'].map(s => (
               <label className="check-item" key={s}>
-                <input type="radio" name="lookingForTeammates" checked={form.lookingForTeammates === s}
-                  onChange={() => set('lookingForTeammates', s)} />
+                <input type="radio" name="lookingForTeammates" checked={form.lookingForTeammates === s} onChange={() => set('lookingForTeammates', s)} />
                 <span className="check-box radio" /><span>{s}</span>
               </label>
             ))}
           </div>
           {form.lookingForTeammates === 'Yes, I want to be matched with a team' && (
-            <div style={{ marginTop: '0.8rem' }}>
-              <label style={{ fontSize: '0.82rem', fontWeight: 600, marginBottom: '0.35rem', display: 'block' }}>
-                What skills are you looking for in teammates?
-              </label>
-              <textarea rows={3} placeholder="e.g. Looking for someone with mobile dev skills and a field researcher based in rural Cameroon"
-                value={form.teamMembersDescription} onChange={e => set('teamMembersDescription', e.target.value)} />
+            <div style={{ marginTop:'0.8rem' }}>
+              <label style={{ fontSize:'0.82rem', fontWeight:600, marginBottom:'0.35rem', display:'block' }}>What skills are you looking for in teammates?</label>
+              <textarea rows={3} placeholder="e.g. Looking for someone with mobile dev skills…" value={form.teamMembersDescription} onChange={e => set('teamMembersDescription', e.target.value)} />
             </div>
           )}
         </div>
       )}
 
-      {/* Team — team details */}
       {form.participationMode === 'team' && (
         <>
           <div className="form-row">
             <div className="form-group">
               <label>Team Name *</label>
-              <input type="text" placeholder="e.g. AgriVision Cameroon"
-                value={form.teamName} onChange={e => set('teamName', e.target.value)} />
+              <input type="text" placeholder="e.g. AgriVision Cameroon" value={form.teamName} onChange={e => set('teamName', e.target.value)} />
             </div>
             <div className="form-group">
               <label>Number of Team Members *</label>
               <select value={form.teamSize} onChange={e => set('teamSize', e.target.value)}>
                 <option value="">Select…</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+                <option>2</option><option>3</option><option>4</option><option>5</option>
               </select>
             </div>
           </div>
-
           <div className="form-group">
             <label>Are you the Team Leader? *</label>
             <div className="check-list">
-              {['Yes, I am the team leader / main contact', 'No, I am a team member (the leader will apply separately)'].map(s => (
+              {['Yes, I am the team leader / main contact','No, I am a team member (the leader will apply separately)'].map(s => (
                 <label className="check-item" key={s}>
-                  <input type="radio" name="teamLeader" checked={form.teamLeader === s}
-                    onChange={() => set('teamLeader', s)} />
+                  <input type="radio" name="teamLeader" checked={form.teamLeader === s} onChange={() => set('teamLeader', s)} />
                   <span className="check-box radio" /><span>{s}</span>
                 </label>
               ))}
             </div>
           </div>
-
           <div className="form-group">
             <label>Briefly describe your team members</label>
-            <textarea rows={4}
-              placeholder={`e.g.\n- Jean Mballa (M2 AI, ENSPD) — ML Engineer\n- Fatima Aliou (L3 Telecom) — Data Collector\n- Paul Tabi (M1 CS) — Frontend Developer`}
-              value={form.teamMembersDescription} onChange={e => set('teamMembersDescription', e.target.value)} />
-            <small style={{ color: 'var(--text-muted, #888)', fontSize: '0.76rem' }}>
-              Each team member should ideally submit their own application as well.
-            </small>
+            <textarea rows={4} placeholder={"e.g.\n- Jean Mballa (M2 AI, ENSPD) — ML Engineer\n- Fatima Aliou (L3 Telecom) — Data Collector"} value={form.teamMembersDescription} onChange={e => set('teamMembersDescription', e.target.value)} />
+            <small style={{ color:'#888', fontSize:'0.76rem' }}>Each team member should ideally submit their own application as well.</small>
           </div>
-
           <div className="form-group">
             <label>Is your team still looking for additional members?</label>
             <div className="check-list">
-              {['Yes, we are open to 1–2 more members', 'No, our team is complete'].map(s => (
+              {['Yes, we are open to 1–2 more members','No, our team is complete'].map(s => (
                 <label className="check-item" key={s}>
-                  <input type="radio" name="lookingForTeammates2" checked={form.lookingForTeammates === s}
-                    onChange={() => set('lookingForTeammates', s)} />
+                  <input type="radio" name="lookingForTeammates2" checked={form.lookingForTeammates === s} onChange={() => set('lookingForTeammates', s)} />
                   <span className="check-box radio" /><span>{s}</span>
                 </label>
               ))}
@@ -781,23 +1124,17 @@ function Step2({ form, set }) {
   )
 }
 
-// STEP 3 — Technical Skills
 function Step3({ form, set, toggleArr }) {
   return (
     <>
       <h3 className="step-title">Technical Skills</h3>
       <p className="step-sub">Help us understand your technical background so we can place you in the right track.</p>
-
       <div className="form-group">
         <label>Overall Programming / Technical Level</label>
         <div className="scale-row">
           <span className="scale-label">Beginner</span>
-          {[1, 2, 3, 4, 5].map(n => (
-            <button key={n} type="button"
-              className={`scale-btn ${form.programmingLevel === n ? 'active' : ''}`}
-              onClick={() => set('programmingLevel', n)}>
-              {n}
-            </button>
+          {[1,2,3,4,5].map(n => (
+            <button key={n} type="button" className={`scale-btn ${form.programmingLevel === n ? 'active' : ''}`} onClick={() => set('programmingLevel', n)}>{n}</button>
           ))}
           <span className="scale-label">Expert</span>
         </div>
@@ -807,7 +1144,6 @@ function Step3({ form, set, toggleArr }) {
           <span>5 = Deployed AI projects</span>
         </div>
       </div>
-
       <div className="form-group">
         <label>Technologies & Tools you are comfortable with</label>
         <div className="check-list two-col">
@@ -819,24 +1155,19 @@ function Step3({ form, set, toggleArr }) {
           ))}
         </div>
       </div>
-
       <div className="form-group">
         <label>Existing Projects or Portfolio</label>
-        <textarea rows={4}
-          placeholder={`Share GitHub links, demos, or brief descriptions:\ne.g. github.com/marie/agro-detect — banana disease detection app (TFLite, 84% accuracy, tested in Douala)`}
-          value={form.projects} onChange={e => set('projects', e.target.value)} />
+        <textarea rows={4} placeholder="Share GitHub links, demos, or brief descriptions…" value={form.projects} onChange={e => set('projects', e.target.value)} />
       </div>
     </>
   )
 }
 
-// STEP 4 — Project Idea & Commitment
 function Step4({ form, set, toggleArr }) {
   return (
     <>
       <h3 className="step-title">Your Project Idea</h3>
       <p className="step-sub">Describe the AI solution you want to build and the impact it could have in Cameroon.</p>
-
       <div className="form-group">
         <label>Target Domain(s) *</label>
         <div className="check-list two-col">
@@ -848,29 +1179,20 @@ function Step4({ form, set, toggleArr }) {
           ))}
         </div>
       </div>
-
       {form.domains.includes('Other (describe below)') && (
         <div className="form-group">
           <label>Describe your domain</label>
-          <textarea rows={2} placeholder="Briefly describe the problem area…"
-            value={form.otherDomain} onChange={e => set('otherDomain', e.target.value)} />
+          <textarea rows={2} placeholder="Briefly describe the problem area…" value={form.otherDomain} onChange={e => set('otherDomain', e.target.value)} />
         </div>
       )}
-
       <div className="form-group">
         <label>Prototype Idea *</label>
-        <textarea rows={4}
-          placeholder={`Describe the AI solution you want to build:\ne.g. "A smartphone app that detects banana diseases (Fusarium wilt) from photos — works offline, designed for farmers in Littoral region."`}
-          value={form.prototypeIdea} onChange={e => set('prototypeIdea', e.target.value)} />
+        <textarea rows={4} placeholder={'Describe the AI solution you want to build…'} value={form.prototypeIdea} onChange={e => set('prototypeIdea', e.target.value)} />
       </div>
-
       <div className="form-group">
         <label>Expected Impact in Cameroon</label>
-        <textarea rows={3}
-          placeholder={`Who will benefit and how?\ne.g. "~15,000 smallholder banana farmers in Mungo Valley could reduce crop losses by 30%."`}
-          value={form.cameroonImpact} onChange={e => set('cameroonImpact', e.target.value)} />
+        <textarea rows={3} placeholder={'Who will benefit and how?'} value={form.cameroonImpact} onChange={e => set('cameroonImpact', e.target.value)} />
       </div>
-
       <div className="form-group">
         <label>Desired Role(s) in the Team</label>
         <div className="check-list two-col">
@@ -882,18 +1204,15 @@ function Step4({ form, set, toggleArr }) {
           ))}
         </div>
       </div>
-
       <div className="form-group">
         <label>Why do you want to join this program?</label>
-        <textarea rows={3}
-          placeholder="Tell us your motivation and what you hope to achieve or learn…"
-          value={form.motivation} onChange={e => set('motivation', e.target.value)} />
+        <textarea rows={3} placeholder="Tell us your motivation…" value={form.motivation} onChange={e => set('motivation', e.target.value)} />
       </div>
     </>
   )
 }
 
-// ─── REGISTER SECTION ──────────────────────────────────────────────────────────
+// ─── Register Section ────────────────────────────────────────
 function RegisterSection() {
   const [step, setStep] = useState(1)
   const [form, setForm] = useState(INIT)
@@ -904,58 +1223,40 @@ function RegisterSection() {
 
   const set = (k, v) => setForm(f => ({ ...f, [k]: v }))
   const toggleArr = (k, v) => setForm(f => ({
-    ...f,
-    [k]: f[k].includes(v) ? f[k].filter(x => x !== v) : [...f[k], v],
+    ...f, [k]: f[k].includes(v) ? f[k].filter(x => x !== v) : [...f[k], v],
   }))
 
   const progress = ((step - 1) / (TOTAL - 1)) * 100
   const [ref, visible] = useReveal()
 
   const handleSubmit = async () => {
-    setSending(true)
-    setError(null)
+    setSending(true); setError(null)
     try {
       await fetch(APPS_SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'text/plain' },
+        method:'POST', mode:'no-cors',
+        headers:{ 'Content-Type':'text/plain' },
         body: JSON.stringify({
-          fullName:               form.fullName,
-          email:                  form.email,
-          phone:                  form.phone,
-          level:                  form.level,
-          major:                  form.major,
-          university:             form.university,
-          participationMode:      form.participationMode,
-          teamName:               form.teamName,
-          teamSize:               form.teamSize,
-          teamLeader:             form.teamLeader,
-          teamMembersDescription: form.teamMembersDescription,
-          lookingForTeammates:    form.lookingForTeammates,
-          programmingLevel:       form.programmingLevel,
-          stack:                  form.stack.join(', '),
-          projects:               form.projects,
-          domains:                form.domains.join(', '),
-          otherDomain:            form.otherDomain,
-          prototypeIdea:          form.prototypeIdea,
-          cameroonImpact:         form.cameroonImpact,
-          roles:                  form.roles.join(', '),
-          motivation:             form.motivation,
+          fullName:form.fullName, email:form.email, phone:form.phone,
+          level:form.level, major:form.major, university:form.university,
+          participationMode:form.participationMode, teamName:form.teamName,
+          teamSize:form.teamSize, teamLeader:form.teamLeader,
+          teamMembersDescription:form.teamMembersDescription,
+          lookingForTeammates:form.lookingForTeammates,
+          programmingLevel:form.programmingLevel, stack:form.stack.join(', '),
+          projects:form.projects, domains:form.domains.join(', '),
+          otherDomain:form.otherDomain, prototypeIdea:form.prototypeIdea,
+          cameroonImpact:form.cameroonImpact, roles:form.roles.join(', '),
+          motivation:form.motivation,
         }),
       })
       setSubmitted(true)
-    } catch {
-      setError('Network error. Check your connection and try again.')
-    } finally {
-      setSending(false)
-    }
+    } catch { setError('Network error. Check your connection and try again.') }
+    finally { setSending(false) }
   }
 
   return (
     <section className={`register-section fade-up ${visible ? 'visible' : ''}`} id="register" ref={ref}>
       <div className="register-inner">
-
-        {/* Left column */}
         <div className="register-left">
           <p className="section-label">2026 Application</p>
           <h2>Join the Exchange</h2>
@@ -963,80 +1264,46 @@ function RegisterSection() {
             Complete the 4-step form to apply for the <strong>AI for Social Good Youth Innovation Exchange</strong>.
             Open to L3, M1/M2 and PhD students from Cameroonian universities — solo or as a team.
           </p>
-
-          {/* Participation modes callout */}
           <div className="register-mode-callout">
             <div className="callout-item">
               <UserPlus size={18} />
-              <div>
-                <strong>Solo Track</strong>
-                <span>Apply alone — we'll help match you with a team, or you can compete individually.</span>
-              </div>
+              <div><strong>Solo Track</strong><span>Apply alone — we'll help match you with a team, or you can compete individually.</span></div>
             </div>
             <div className="callout-item">
               <UsersRound size={18} />
-              <div>
-                <strong>Team Track</strong>
-                <span>Apply with your team of 2–5 members. Each member should ideally submit their own form.</span>
-              </div>
+              <div><strong>Team Track</strong><span>Apply with your team of 2–5 members. Each member should ideally submit their own form.</span></div>
             </div>
           </div>
-
           <div className="register-info-list">
-            <div className="register-info-item">
-              <Calendar size={16} />
-              <span>April 6–11, 2026</span>
-            </div>
-            <div className="register-info-item">
-              <MapPin size={16} />
-              <span>University of Douala, Cameroon</span>
-            </div>
-            <div className="register-info-item">
-              <Mail size={16} />
-              <span>jean.ndoumbe02@gmail.com</span>
-            </div>
-            <div className="register-info-item">
-              <Mail size={16} />
-              <span>armiellengaffo@gmail.com</span>
-            </div>
+            <div className="register-info-item"><Calendar size={16} /><span>April 6–10, 2026</span></div>
+            <div className="register-info-item"><MapPin size={16} /><span>University of Douala, Cameroon</span></div>
+            <div className="register-info-item"><Mail size={16} /><span>jean.ndoumbe02@gmail.com</span></div>
+            <div className="register-info-item"><Mail size={16} /><span>armiellengaffo@gmail.com</span></div>
           </div>
         </div>
 
-        {/* Right column — form */}
         <div className="register-right">
           {!submitted ? (
             <>
               <div className="form-steps-nav">
                 {STEP_LABELS.map((l, i) => (
                   <div key={l} className={`form-step-dot ${i + 1 < step ? 'done' : i + 1 === step ? 'active' : ''}`}>
-                    <div className="step-dot-circle">
-                      {i + 1 < step ? <CheckCircle2 size={14} /> : i + 1}
-                    </div>
+                    <div className="step-dot-circle">{i + 1 < step ? <CheckCircle2 size={14} /> : i + 1}</div>
                     <span>{l}</span>
                   </div>
                 ))}
               </div>
-
-              <div className="form-progress">
-                <div className="form-progress-fill" style={{ width: `${progress}%` }} />
-              </div>
-
+              <div className="form-progress"><div className="form-progress-fill" style={{ width:`${progress}%` }} /></div>
               <div className="form-body">
                 {step === 1 && <Step1 form={form} set={set} />}
                 {step === 2 && <Step2 form={form} set={set} toggleArr={toggleArr} />}
                 {step === 3 && <Step3 form={form} set={set} toggleArr={toggleArr} />}
                 {step === 4 && <Step4 form={form} set={set} toggleArr={toggleArr} />}
               </div>
-
               {error && <p className="form-error">{error}</p>}
-
               <div className="form-footer-nav">
-                {step > 1
-                  ? <button className="btn-back-form" onClick={() => setStep(s => s - 1)}>← Back</button>
-                  : <span />
-                }
-                <button className="btn-primary" disabled={sending}
-                  onClick={() => step < TOTAL ? setStep(s => s + 1) : handleSubmit()}>
+                {step > 1 ? <button className="btn-back-form" onClick={() => setStep(s => s - 1)}>← Back</button> : <span />}
+                <button className="btn-primary" disabled={sending} onClick={() => step < TOTAL ? setStep(s => s + 1) : handleSubmit()}>
                   {step === TOTAL ? (sending ? 'Sending…' : 'Submit Application') : 'Continue →'}
                 </button>
               </div>
@@ -1047,18 +1314,13 @@ function RegisterSection() {
               <h3>Application Submitted!</h3>
               <p>
                 Thank you, <strong>{form.fullName}</strong>!
-                {form.participationMode === 'team' && form.teamName && (
-                  <> Your team <strong>"{form.teamName}"</strong> is registered.</>
-                )}
+                {form.participationMode === 'team' && form.teamName && <> Your team <strong>"{form.teamName}"</strong> is registered.</>}
                 <br /><br />
-                We will contact you at <em>{form.email}</em> within 2 weeks.
-                <br /><br />
+                We will contact you at <em>{form.email}</em> within 2 weeks.<br /><br />
                 Start preparing your prototype — <strong>Cameroon needs you.</strong>
               </p>
-              {(form.participationMode === 'team') && (
-                <p style={{ marginTop: '0.8rem', fontSize: '0.85rem', opacity: 0.8 }}>
-                  Remind your teammates to submit their own applications as well.
-                </p>
+              {form.participationMode === 'team' && (
+                <p style={{ marginTop:'0.8rem', fontSize:'0.85rem', opacity:0.8 }}>Remind your teammates to submit their own applications as well.</p>
               )}
             </div>
           )}
@@ -1068,84 +1330,61 @@ function RegisterSection() {
   )
 }
 
-// ─── FOOTER ───────────────────────────────────────────────────────────────────
+// ─── Footer ──────────────────────────────────────────────────
 function Footer() {
   return (
     <footer className="site-footer">
       <div className="footer-inner">
         <div className="footer-brand">
           <div className="footer-logo">
-            <img src="/logo.png" alt="AI for Social Good"
-              style={{ height: 28, width: 'auto', borderRadius: 4 }}
-              onError={e => { e.target.style.display = 'none' }} />
+            <img src="/logo.png" alt="AI for Social Good" style={{ height:28, width:'auto', borderRadius:4 }} onError={e => { e.target.style.display='none' }} />
             <span>AI for Social Good · Cameroon 2026</span>
           </div>
-          <p>
-            A reciprocal exchange program between ENSPD / University of Douala,
-            Georgia State University, Georgia Tech and the U.S. Embassy in Cameroon.
-          </p>
+          <p>A reciprocal exchange program between ENSPD / University of Douala, Georgia State University, Georgia Tech and the U.S. Embassy in Cameroon.</p>
           <div className="footer-contacts">
-            <a href="mailto:jean.ndoumbe02@gmail.com">
-              <Mail size={13} /> jean.ndoumbe02@gmail.com
-            </a>
-            <a href="mailto:armiellengaffo@gmail.com">
-              <Mail size={13} /> armiellengaffo@gmail.com
-            </a>
-            <a href="https://maps.google.com/?q=University+of+Douala+Cameroon" target="_blank" rel="noopener noreferrer">
-              <MapPin size={13} /> University of Douala, Cameroon
-            </a>
+            <a href="mailto:jean.ndoumbe02@gmail.com"><Mail size={13} /> jean.ndoumbe02@gmail.com</a>
+            <a href="mailto:armiellengaffo@gmail.com"><Mail size={13} /> armiellengaffo@gmail.com</a>
+            <a href="https://maps.google.com/?q=University+of+Douala+Cameroon" target="_blank" rel="noopener noreferrer"><MapPin size={13} /> University of Douala, Cameroon</a>
           </div>
           <div className="footer-social">
-            <a href="https://twitter.com/AIforGoodCMR" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X">
-              <SocialIcon name="twitter" size={15} />
-            </a>
-            <a href="https://www.facebook.com/AIforSocialGoodCameroon" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-              <SocialIcon name="facebook" size={16} />
-            </a>
-            <a href="https://www.linkedin.com/company/ai-for-social-good-cameroon" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-              <SocialIcon name="linkedin" size={16} />
-            </a>
-            <a href="https://www.instagram.com/aiforsocialgoodcmr" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-              <SocialIcon name="instagram" size={16} />
-            </a>
+            <a href="https://twitter.com/AIforGoodCMR" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><SocialIcon name="twitter" size={15} /></a>
+            <a href="https://www.facebook.com/AIforSocialGoodCameroon" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><SocialIcon name="facebook" size={16} /></a>
+            <a href="https://www.linkedin.com/company/ai-for-social-good-cameroon" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><SocialIcon name="linkedin" size={16} /></a>
+            <a href="https://www.instagram.com/aiforsocialgoodcmr" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><SocialIcon name="instagram" size={16} /></a>
           </div>
         </div>
-
         <div className="footer-col">
           <h4>Program</h4>
           <ul>
             <li><a href="#about">About</a></li>
+            <li><a href="#day-program">5-Day Schedule</a></li>
             <li><a href="#programme">AI Workshops</a></li>
             <li><a href="#programme">Hackathon</a></li>
             <li><a href="#programme">Public Showcase</a></li>
-            <li><a href="#programme">Open-Source Toolkit</a></li>
           </ul>
         </div>
-
         <div className="footer-col">
           <h4>Partners</h4>
           <ul>
             {PARTNERS.map(p => (
               <li key={p.name}>
                 <a href={p.url} target="_blank" rel="noopener noreferrer">
-                  {p.name} <ExternalLink size={10} style={{ display: 'inline', verticalAlign: 'middle', marginLeft: 3 }} />
+                  {p.name} <ExternalLink size={10} style={{ display:'inline', verticalAlign:'middle', marginLeft:3 }} />
                 </a>
               </li>
             ))}
           </ul>
         </div>
-
         <div className="footer-col">
           <h4>Information</h4>
           <ul>
-            <li><a href="#home">April 6–11, 2026</a></li>
+            <li><a href="#home">April 6–10, 2026</a></li>
             <li><a href="#register">Application</a></li>
             <li><a href="mailto:jean.ndoumbe02@gmail.com">Contact</a></li>
             <li><a href="#about">FAQ</a></li>
           </ul>
         </div>
       </div>
-
       <div className="footer-bottom">
         <span>© 2026 AI for Social Good – Youth Innovation Exchange in Cameroon</span>
         <span>Reciprocal Exchange Award · ENSPD × Georgia State University × Georgia Tech</span>
@@ -1154,7 +1393,7 @@ function Footer() {
   )
 }
 
-// ─── APP ──────────────────────────────────────────────────────────────────────
+// ─── App ─────────────────────────────────────────────────────
 export default function App() {
   return (
     <>
@@ -1167,6 +1406,7 @@ export default function App() {
       <AboutSection />
       <FeaturesStrip />
       <Testimonials />
+      <DayProgramSection />
       <DomainsSection />
       <EventsSection />
       <RegisterSection />
