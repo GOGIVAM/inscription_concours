@@ -58,13 +58,40 @@ const FEATURES = [
 
 const PROJECT_LEADERS = [
   {
+    name: 'Dr. Armielle Noulapeu Ngaffo',
+    role: 'AI Lecturer · ENSPD, University of Douala',
+    contact: 'armiellengaffo@gmail.com',
+    photo: '/armielle_ngaffo.png',
+    initials: 'AN',
+    tags: ['Artificial Intelligence', 'ICT', 'Ethics & Innovation'],
+    bio: 'Armielle Noulapeu Ngaffo is an AI Lecturer at ENSPD with over eight years of experience in Information and Communication Technologies. She holds a PhD specialising in AI and is a Mandela Washington Fellowship alumna. Committed to cultivating critical thinking and ethical AI practices, she actively inspires the next generation — particularly women — to pursue STEM careers and leverage AI for positive change in Cameroon.',
+  },
+  {
     name: 'Prof. Dr. habil. Patrick Njionou Sadjang',
     role: 'Associate Professor · ENSPD, University of Douala',
     contact: 'pnjionou@yahoo.fr',
     photo: '/njionou.png',
     initials: 'PN',
     tags: ['(p,q)-Calculus', 'Machine Learning', 'AI & Data Science'],
-    bio: 'A distinguished Cameroonian mathematician, Patrick Njionou Sadjang holds a PhD (2013) and a Dr. habil. (2024) from the University of Kassel, Germany — one of the most demanding academic credentials in the German system. With over 35 peer-reviewed publications in (p,q)-calculus and hypergeometric polynomials, he has extended his expertise into Machine Learning and AI. Secretary General of the Cameroon Mathematical Union (CAMU) and General Coordinator of Easy-Maths, he mentors the next generation of African scientists at AIMS-Cameroon and beyond.',
+    bio: 'A distinguished Cameroonian mathematician, Patrick Njionou Sadjang holds a PhD (2013) and a Dr. habil. (2024) from the University of Kassel, Germany. With over 35 peer-reviewed publications in (p,q)-calculus and hypergeometric polynomials, he has extended his expertise into Machine Learning and AI. Secretary General of the Cameroon Mathematical Union (CAMU) and General Coordinator of Easy-Maths, he mentors the next generation of African scientists at AIMS-Cameroon and beyond.',
+  },
+  {
+    name: 'Dr. Jean Ndoumbe',
+    role: 'Associate Professor & Lab Coordinator · ENSPD, University of Douala',
+    contact: 'jean.ndoumbe02@gmail.com',
+    photo: '/jean_ndoumbe.png',
+    initials: 'JN',
+    tags: ['Electrical Engineering', 'Numerical Simulation', 'AI & Communications'],
+    bio: 'Jean Ndoumbe holds a PhD in Electrical Engineering (2014) from the École Centrale de Lyon, France. He currently serves as Associate Professor and coordinator of the Computer Engineering, Data Science and Artificial Intelligence laboratory at ENSPD. His research bridges dielectric materials, numerical simulation, and the integration of artificial intelligence into communication systems.',
+  },
+  {
+    name: 'Dr. Ebenezer Maka Maka',
+    role: 'Head of Department, Computer Engineering & Telecom · ENSPD, University of Douala',
+    contact: '',
+    photo: '/ebenezer_maka.png',
+    initials: 'EM',
+    tags: ['Cybersecurity', 'Medical Imaging', 'Digital Innovation'],
+    bio: 'Ebenezer Maka Maka holds a PhD (2022) and serves as Head of the Department of Computer Engineering and Telecommunications at ENSPD. He coordinates the Computer Engineering axis within the Lab of Computer Engineering, Data Science and AI. His research focuses on securing medical images through hybrid cryptographic methods. Deeply engaged in student supervision and engineering program design, he champions digital innovation and cybersecurity across Africa.',
   },
 ]
 
