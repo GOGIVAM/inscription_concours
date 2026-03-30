@@ -56,12 +56,18 @@ const FEATURES = [
   { label: 'Reciprocal US–Cameroon Exchange', img: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=40&h=40&fit=crop&q=60' },
 ]
 
-const TESTIMONIALS = [
-  { quote: "This program is a unique opportunity for young Cameroonians to develop concrete AI solutions that address the real challenges of our country.", name: 'Prof. Aimé Takoukam', role: 'ENSPD – École Nationale Supérieure Polytechnique de Douala', initials: 'AT' },
-  { quote: "Georgia State University is proud of this partnership. We believe that youth-driven innovation can transform healthcare and education systems across Africa.", name: 'Dr. Sarah Mitchell', role: 'Innovation Center, Georgia State University', initials: 'SM' },
-  { quote: "The reciprocal exchanges between our institutions embody the educational diplomacy mission of the Embassy. We fully support this initiative.", name: 'James Whitfield', role: 'U.S. Embassy Cameroon', initials: 'JW' },
-  { quote: "Georgia Tech is excited to collaborate on AI for social good in Africa. The potential of these young innovators is immense and inspiring.", name: 'Prof. Ana Rodrigues', role: 'Georgia Institute of Technology', initials: 'AR' },
+const PROJECT_LEADERS = [
+  {
+    name: 'Prof. Dr. habil. Patrick Njionou Sadjang',
+    role: 'Associate Professor · ENSPD, University of Douala',
+    contact: 'pnjionou@yahoo.fr',
+    photo: '/njionou.png',
+    initials: 'PN',
+    tags: ['(p,q)-Calculus', 'Machine Learning', 'AI & Data Science'],
+    bio: 'A distinguished Cameroonian mathematician, Patrick Njionou Sadjang holds a PhD (2013) and a Dr. habil. (2024) from the University of Kassel, Germany — one of the most demanding academic credentials in the German system. With over 35 peer-reviewed publications in (p,q)-calculus and hypergeometric polynomials, he has extended his expertise into Machine Learning and AI. Secretary General of the Cameroon Mathematical Union (CAMU) and General Coordinator of Easy-Maths, he mentors the next generation of African scientists at AIMS-Cameroon and beyond.',
+  },
 ]
+
 
 const SERVICES = [
   { icon: Cpu,      title: 'AI & Data Literacy Workshops',         body: 'Interactive training sessions led by experts from Georgia State and Georgia Tech. Covers Python, PyTorch, TFLite and AI applications adapted to the African low-resource context.' },
@@ -451,44 +457,107 @@ function FeaturesStrip() {
   )
 }
 
-// ─── Testimonials ────────────────────────────────────────────
-function Testimonials() {
+function ProjectLeaders() {
   const [active, setActive] = useState(0)
   const [ref, visible] = useReveal()
+  const leader = PROJECT_LEADERS[active]
+
   useEffect(() => {
-    const t = setInterval(() => setActive(a => (a + 1) % TESTIMONIALS.length), 6000)
+    const t = setInterval(() => setActive(a => (a + 1) % PROJECT_LEADERS.length), 7000)
     return () => clearInterval(t)
   }, [])
-  const t = TESTIMONIALS[active]
+
   return (
-    <section className={`testimonials-section fade-up ${visible ? 'visible' : ''}`} ref={ref}>
-      <div className="testimonials-inner">
-        <div className="testimonials-left">
-          <p className="section-label">What They Say</p>
-          <h2>Backed by Leading<br />Institutions</h2>
-          <div className="testimonial-dots">
-            {TESTIMONIALS.map((_, i) => (
-              <button key={i} className={`tdot ${i === active ? 'active' : ''}`} onClick={() => setActive(i)} />
+    <section className={`project-leaders-section fade-up ${visible ? 'visible' : ''}`} ref={ref}>
+      <div className="project-leaders-inner">
+
+        {/* ── LEFT ── */}
+        <div className="pl-left">
+          <p className="section-label">Meet the Team</p>
+          <h2>The People<br />Behind the Program</h2>
+          <p className="pl-tagline">
+            Researchers, educators and innovators driving this US–Cameroon exchange.
+          </p>
+
+          <div className="pl-dots">
+            {PROJECT_LEADERS.map((l, i) => (
+              <button
+                key={i}
+                className={`pl-dot ${i === active ? 'active' : ''}`}
+                onClick={() => setActive(i)}
+                title={l.name}
+              />
             ))}
           </div>
-          <div className="testimonial-arrows">
-            <button onClick={() => setActive(a => (a - 1 + TESTIMONIALS.length) % TESTIMONIALS.length)}><ChevronLeft size={18} /></button>
-            <button onClick={() => setActive(a => (a + 1) % TESTIMONIALS.length)}><ChevronRight size={18} /></button>
+
+          <div className="pl-arrows">
+            <button onClick={() => setActive(a => (a - 1 + PROJECT_LEADERS.length) % PROJECT_LEADERS.length)}>
+              <ChevronLeft size={18} />
+            </button>
+            <button onClick={() => setActive(a => (a + 1) % PROJECT_LEADERS.length)}>
+              <ChevronRight size={18} />
+            </button>
+          </div>
+
+          <div className="pl-mini-avatars">
+            {PROJECT_LEADERS.map((l, i) => (
+              <button
+                key={i}
+                className={`pl-mini-avatar-btn ${i === active ? 'active' : ''}`}
+                onClick={() => setActive(i)}
+              >
+                <img
+                  src={l.photo}
+                  alt={l.name}
+                  onError={e => {
+                    e.target.style.display = 'none'
+                    e.target.nextSibling.style.display = 'flex'
+                  }}
+                />
+                <span className="pl-mini-avatar-fallback">{l.initials}</span>
+              </button>
+            ))}
           </div>
         </div>
-        <div className="testimonials-right">
-          <div className="testimonial-card" key={active}>
-            <div className="quote-glyph">&ldquo;</div>
-            <p className="quote-text">{t.quote}</p>
-            <div className="quote-author">
-              <div className="author-avatar">{t.initials}</div>
-              <div>
-                <div className="author-name">{t.name}</div>
-                <div className="author-role">{t.role}</div>
-              </div>
+
+        {/* ── RIGHT ── */}
+        <div className="pl-card" key={active}>
+          <div className="pl-counter">
+            {String(active + 1).padStart(2, '0')} / {String(PROJECT_LEADERS.length).padStart(2, '0')}
+          </div>
+
+          <div className="pl-identity">
+            <div className="pl-photo-wrap">
+              <img
+                src={leader.photo}
+                alt={leader.name}
+                onError={e => {
+                  e.target.style.display = 'none'
+                  e.target.nextSibling.style.display = 'flex'
+                }}
+              />
+              <span className="pl-photo-fallback">{leader.initials}</span>
+            </div>
+            <div>
+              <div className="pl-name">{leader.name}</div>
+              <div className="pl-role">{leader.role}</div>
+              {leader.contact && (
+                <a href={`mailto:${leader.contact}`} className="pl-email">
+                  {leader.contact}
+                </a>
+              )}
             </div>
           </div>
+
+          <div className="pl-tags">
+            {leader.tags.map(t => (
+              <span key={t} className="pl-tag">{t}</span>
+            ))}
+          </div>
+
+          <p className="pl-bio">{leader.bio}</p>
         </div>
+
       </div>
     </section>
   )
@@ -1405,7 +1474,7 @@ export default function App() {
       <StatsSection />
       <AboutSection />
       <FeaturesStrip />
-      <Testimonials />
+      <ProjectLeaders />
       <DayProgramSection />
       <DomainsSection />
       <EventsSection />
