@@ -93,6 +93,24 @@ const PROJECT_LEADERS = [
     tags: ['Cybersecurity', 'Medical Imaging', 'Digital Innovation'],
     bio: 'Ebenezer Maka Maka holds a PhD (2022) and serves as Head of the Department of Computer Engineering and Telecommunications at ENSPD. He coordinates the Computer Engineering axis within the Lab of Computer Engineering, Data Science and AI. His research focuses on securing medical images through hybrid cryptographic methods. Deeply engaged in student supervision and engineering program design, he champions digital innovation and cybersecurity across Africa.',
   },
+   {
+    name: 'Bryan Cox',
+    role: 'Lead CS Program Specialist · Georgia Department of Education',
+    contact: '',
+    photo: '/bryan_cox.png',
+    initials: 'BC',
+    tags: ['Computer Science Education', 'K-12 STEM', 'Computational Thinking'],
+    bio: 'Bryan Cox leads Computer Science education initiatives at the Georgia DOE, where he broadens participation in CS experiences statewide and builds CS into a K-12 discipline. A former 8-year high school STEM teacher in mathematics, computer science, and engineering, he is pursuing a PhD in Instructional Technology at Georgia State University with a focus on online learning and computational thinking. He holds an M.A.T. in Mathematics from GSU and a B.S. in Computer Information Systems from Florida A&M University.',
+  },
+  {
+    name: 'Dr. Recha Reid',
+    role: 'Associate Director, Entrepreneurship & Innovation Institute · Georgia State University',
+    contact: 'rreid16@gsu.edu',
+    photo: '/recha_reid.png',
+    initials: 'RR',
+    tags: ['Entrepreneurship', 'Innovation', 'Program Management'],
+    bio: 'Recha Reid oversees university-wide entrepreneurship events and strategic partnerships at Georgia State University\'s Entrepreneurship & Innovation Institute. Previously at Georgia Tech, she managed the Emmy Award-winning InVenture Prize and undergraduate research programs. A recipient of the 2021 Southeast Regional Emmy Award and the 2023 Atlanta Startup Awards Equity Champion Award, she holds a PhD from GSU, an MA from the University of Birmingham, and a BA from Wesleyan College.',
+  },
 ]
 
 
