@@ -111,6 +111,24 @@ const PROJECT_LEADERS = [
     tags: ['Entrepreneurship', 'Innovation', 'Program Management'],
     bio: 'Recha Reid oversees university-wide entrepreneurship events and strategic partnerships at Georgia State University\'s Entrepreneurship & Innovation Institute. Previously at Georgia Tech, she managed the Emmy Award-winning InVenture Prize and undergraduate research programs. A recipient of the 2021 Southeast Regional Emmy Award and the 2023 Atlanta Startup Awards Equity Champion Award, she holds a PhD from GSU, an MA from the University of Birmingham, and a BA from Wesleyan College.',
   },
+  {
+    name: 'Dr. Erica Bass-Flimmons',
+    role: 'Associate Director, Center for Evaluation & Research Services · Georgia State University',
+    contact: '',
+    photo: '/erica_bass_flimmons.png',
+    initials: 'EB',
+    tags: ['Global Education', 'Mobile Health', 'Girls in STEAM'],
+    bio: 'With over 15 years advancing equity and innovation across Africa and the US, Dr. Bass-Flimmons leads NIH-funded mobile health education in Ghana and co-founded SheSTEAM — an AI and digital storytelling empowerment program that has reached 1,000+ girls across South Africa. Her work spans Ghana, Zambia, Kenya, and Malawi. Honors include the GSU International Staff Award, the State of Georgia Research Award, and the Outstanding Dissertation Award in Learning Technologies.',
+  },
+  {
+    name: 'Yannick Malong',
+    role: 'Senior Lecturer, Computer Engineering & Telecom · ENSPD, University of Douala',
+    contact: '',
+    photo: '/yannick_malong.png',
+    initials: 'YM',
+    tags: ['Cybersecurity', 'Network Optimization', 'African AI Community'],
+    bio: 'Yannick Malong is a Senior Lecturer at ENSPD and a member of the Computer Engineering, Data Science and AI Laboratory, as well as the Intelligent and Sustainable Decision-Making research team. His research spans cybersecurity, AI, graph theory, mobile communications, and cloud computing. Actively engaged in the African AI ecosystem through IndabaX Cameroon, he bridges science, policy, and industry to advance digital transformation and sustainable development across the continent.',
+  },
 ]
 
 
