@@ -121,6 +121,15 @@ const PROJECT_LEADERS = [
     bio: 'With over 15 years advancing equity and innovation across Africa and the US, Dr. Bass-Flimmons leads NIH-funded mobile health education in Ghana and co-founded SheSTEAM — an AI and digital storytelling empowerment program that has reached 1,000+ girls across South Africa. Her work spans Ghana, Zambia, Kenya, and Malawi. Honors include the GSU International Staff Award, the State of Georgia Research Award, and the Outstanding Dissertation Award in Learning Technologies.',
   },
   {
+    name: 'Dr. Melissa Speight Vaughn',
+    role: 'Research Scientist · Boston University | President · African Research Collaborative (ARC)',
+    contact: '',
+    photo: '/melissa_speight_vaughn.png',
+    initials: 'MS',
+    tags: ['STEM & STEAM', 'Participatory Research', 'Global Education'],
+    bio: 'With over 20 years of experience in education, STEM programming, and international research, Dr. Speight Vaughn designs youth-centered innovation programs across the US and Africa — including hackathons and digital learning initiatives in South Africa and Ghana. A facilitator for the Mandela Washington Fellowship, she brings deep expertise in curriculum design, digital toolkits, and culturally responsive pedagogy. As President of the African Research Collaborative, she bridges research, technology, and community engagement to drive sustainable, youth-driven innovation.',
+  },
+  {
     name: 'Yannick Malong',
     role: 'Senior Lecturer, Computer Engineering & Telecom · ENSPD, University of Douala',
     contact: '',
